@@ -8,6 +8,7 @@ build:
                 override:
                     - php-scrutinizer-run --enable-security-analysis
                     - js-scrutinizer-run
+                    - scss-lint-run
     dependencies:
         after:
             - if [ -e vendor/bin/ece-tools ]; then vendor/bin/ece-tools patch; fi
@@ -21,10 +22,12 @@ build:
         php:
             version: '7.1'
         node: 'v10.15.3'
+        ruby: '2.5.5' # Needed for scss-lint
 
 filter:
     excluded_paths:
         - 'vendor/*'
+        - 'styles/vendor/magento-ui' 
         - 'bin/*'
         - 'update/*'
         - 'setup/*'
