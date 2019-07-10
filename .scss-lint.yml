@@ -31,6 +31,9 @@ linters:
   PlaceholderInExtend:
     enabled: false
 
+  PropertySortOrder:
+    enabled: false
+
   PropertySpelling:
     enabled: true
 
