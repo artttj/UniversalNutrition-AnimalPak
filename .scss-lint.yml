@@ -1,6 +1,9 @@
 severity: error
 
 linters:
+  DeclarationOrder:
+    enabled: false
+
   EmptyLineBetweenBlocks:
     enabled: true
 
@@ -15,6 +18,9 @@ linters:
   HexValidation:
     enabled: true
 
+  ImportantRule:
+    enabled: false
+
   Indentation:
     enabled: true
     character: space
@@ -28,6 +34,9 @@ linters:
     enabled: false
     convention: BEM
 
+  NestingDepth:
+    enabled: false
+
   PlaceholderInExtend:
     enabled: false
 
@@ -37,9 +46,15 @@ linters:
   PropertySpelling:
     enabled: true
 
+  QualifyingElement:
+    enabled: false
+
   SelectorDepth:
     enabled: true
     depth: 5
+
+  SelectorFormat:
+    enabled: false
 
   Shorthand:
     enabled: true
