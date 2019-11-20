@@ -24,7 +24,7 @@ Now you have a new repo.
  - Check the spec.  If it doesn't say anything specific about sample data, add and commit:
  
        composer require magento/sample-data-media magento/module-catalog-sample-data magento/module-configurable-sample-data \
-         magento/module-bundle magento/module-grouped-product-sample-data magento/module-gift-card-sample-data \
+         magento/module-bundle-sample-data magento/module-grouped-product-sample-data magento/module-gift-card-sample-data \
          magento/module-product-links-sample-data magento/module-review-sample-data magento/module-swatches-sample-data \
          magento/sample-data-media
 
