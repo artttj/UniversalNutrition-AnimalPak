@@ -309,6 +309,7 @@ return [
         'SomethingDigital_BryantPark' => 1,
         'SomethingDigital_BuildNotation' => 1,
         'SomethingDigital_CmsMetaImage' => 1,
+        'SomethingDigital_InvalidateAdminPasswords' => 1,
         'SomethingDigital_Migration' => 1,
         'SomethingDigital_MigrationAccelerator' => 1,
         'SomethingDigital_MigrationBryantPark' => 1,
