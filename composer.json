@@ -33,6 +33,10 @@
         },
         {
             "type": "git",
+            "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_CmsMetaImage.git"
+        },
+        {
+            "type": "git",
             "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_InvalidateAdminPasswords.git"
         }
     ],
@@ -48,6 +52,7 @@
         "msp/adminrestriction": "^1.3",
         "ethanyehuda/magento2-cronjobmanager": "^1.6",
         "pelago/emogrifier": "~2.0.0||>=2.1.2",
+        "somethingdigital/module-cms-meta-image": "^1.0",
         "somethingdigital/invalidate-admin-passwords": "^0.1.0"
     },
     "require-dev": {
