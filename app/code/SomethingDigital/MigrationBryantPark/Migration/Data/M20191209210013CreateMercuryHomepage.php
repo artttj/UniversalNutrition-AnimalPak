@@ -101,7 +101,7 @@ class M20191209210013CreateMercuryHomepage implements MigrationInterface
                     data-products-autoplay="false" data-products-autoplay-speed="4000" data-products-fade="false"
                     data-products-infinite-loop="false" data-products-show-arrows="true" data-products-show-dots="false"
                     data-element="main" style="border-style: none; border-width: 1px; border-radius: 0px;">
-                    {{widget type="Magento\CatalogWidget\Block\Product\ProductsList" template="Magento_CatalogWidget::product/widget/content/grid.phtml" anchor_text="" id_path="" show_pager="0" products_count="10" type_name="Catalog Products List" conditions_encoded="^[`1`:^[`type`:`Magento||CatalogWidget||Model||Rule||Condition||Combine`,`aggregator`:`all`,`value`:`0`,`new_child`:``^]^]"}}
+                    "{{widget type="Magento\CatalogWidget\Block\Product\ProductsList" template="Magento_CatalogWidget::product/widget/content/grid.phtml" anchor_text="" id_path="" show_pager="0" products_count="10" type_name="Catalog Products List" conditions_encoded="^['1:^[type: Magento||CatalogWidget||Model||Rule||Condition||Combine,aggregator:all,value:0,new_child:^]^]"}}"
                     </div>
                 </div>
                 </div>
