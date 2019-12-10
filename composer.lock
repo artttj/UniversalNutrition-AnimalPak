@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86e6e1729bad5d4fac8ce25a643533b3",
+    "content-hash": "42f2d4fa21a47c1fa715dda69dcab7bc",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -15576,11 +15576,11 @@
         },
         {
             "name": "somethingdigital/magento2-theme-bryantpark",
-            "version": "4.2.3",
+            "version": "4.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "03eb1e823d6a81b4aa0a39e51480fef8f2d3513c"
+                "reference": "9c2f5416cbaa97f51694845c6b691d4885e15bae"
             },
             "require": {
                 "magento/magento-composer-installer": "*",
@@ -15596,7 +15596,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2019-08-29T18:48:18+00:00"
+            "time": "2019-12-10T17:27:35+00:00"
         },
         {
             "name": "somethingdigital/module-admin-notify",
@@ -16107,7 +16107,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
