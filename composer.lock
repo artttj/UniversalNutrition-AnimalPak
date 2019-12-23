@@ -16502,11 +16502,11 @@
         },
         {
             "name": "somethingdigital/module-cms-meta-image",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_CmsMetaImage.git",
-                "reference": "0cf3913c6701da389ea0426903493129a989dc9d"
+                "reference": "b3abf30e97b8962b89542303bdcc9950c4b097b4"
             },
             "require": {
                 "magento/framework": "~102.0.0",
@@ -16528,7 +16528,7 @@
                 "proprietary"
             ],
             "description": "OG Meta Image Attribute for CMS Pages",
-            "time": "2019-11-29T21:27:02+00:00"
+            "time": "2019-12-12T19:25:08+00:00"
         },
         {
             "name": "spomky-labs/otphp",
