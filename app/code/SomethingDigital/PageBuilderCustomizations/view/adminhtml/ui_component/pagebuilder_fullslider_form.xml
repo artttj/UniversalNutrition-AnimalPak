@@ -200,6 +200,28 @@
                 </checkbox>
             </formElements>
         </field>
+        <field name="mobile_only" sortOrder="50" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">true</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Slider Mobile Only</label>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="string">false</map>
+                            <map name="true" xsi:type="string">true</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
         <field name="min_height" sortOrder="60" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
