@@ -23,7 +23,7 @@ services:
       - ~/.ssh:/var/www/.ssh
       - ~/.composer:/var/www/.composer:delegated
       - ../nginx.conf.sample:/var/www/html/nginx.conf:delegated
-      - ../app/etc/env.php-local:/var/www/html/app/etc/env.php:delegated
+      - ../app/etc/env.php-local:/var/www/html/app/etc/env.php
       - appdata:/var/www/html
       - sockdata:/sock
 

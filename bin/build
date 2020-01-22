@@ -1,4 +1,3 @@
 #!/bin/bash
-cd $(dirname 0)/../
-
-docker build --build-arg SSH_PRIVATE_KEY=${SSH_PRIVATE_KEY} -t accelerator:latest .
+cd $(dirname 0)
+docker build --build-arg SSH_PRIVATE_KEY="${SSH_PRIVATE_KEY}" -t accelerator:latest .
