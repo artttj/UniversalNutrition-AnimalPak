@@ -1,0 +1,15 @@
+#!/bin/bash
+cd $(dirname $0)
+BIN_DIR=$(pwd)
+COMPOSE_DIR=${BIN_DIR}/..
+REAL_SRC=${COMPOSE_DIR}/..
+
+[ -z "$1" ] && echo "Please specify a directory or file to copy from container (ex. vendor, --all)" && exit
+
+if [ "$1" == "--all" ]; then
+  docker cp $(docker-compose ps -q phpfpm|awk '{print $1}'):/var/www/html/./ $REAL_SRC/
+  echo "Completed copying all files from container to host"
+else
+  docker cp $(docker-compose ps -q phpfpm|awk '{print $1}'):/var/www/html/$1 $REAL_SRC/
+  echo "Completed copying $1 from container to host"
+fi

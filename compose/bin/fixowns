@@ -1,0 +1,12 @@
+#!/bin/bash
+cd $(dirname $0)
+
+echo "Correcting filesystem ownerships..."
+
+if [ -z "$1" ]; then
+  ./rootnotty chown -R app:app /var/www/
+else
+  ./rootnotty chown -R app:app /var/www/html/$1
+fi
+
+echo "Filesystem ownerships corrected."

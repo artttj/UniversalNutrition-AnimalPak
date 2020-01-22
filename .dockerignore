@@ -1,0 +1,9 @@
+vendor/
+Dockerfile
+.docker
+.git
+.github
+./docker-compose*
+./compose
+./generated/*
+./vendor/*
