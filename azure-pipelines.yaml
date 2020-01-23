@@ -31,21 +31,18 @@ stages:
       inputs:
         secureFile: 'git_ssh_key'
     
-    - bash: |
-        export SSH_PRIVATE_KEY=`cat $(Agent.TempDirectory)/git_ssh_key`
-        echo "##vso[task.setvariable variable=SSH_PRIVATE_KEY]$SSH_PRIVATE_KEY"
-      displayName: "Set the shell variable from file"
-        
     - task: DownloadSecureFile@1
-      displayName: 'Download magento authentication file'
-      name: 'auth_file'
-      inputs:
-        secureFile: 'auth.json'
-    
+        displayName: 'Download magento authentication file'
+        name: 'auth_file'
+        inputs:
+          secureFile: 'auth.json'
+              
     - bash: mv $(Agent.TempDirectory)/auth.json $(System.DefaultWorkingDirectory)/
       displayName: "Move auth_file to working directory"
 
-    - script: ./cicd/build.sh
+    - bash: |
+        export SSH_PRIVATE_KEY=`cat $(Agent.TempDirectory)/git_ssh_key`
+        $(System.DefaultWorkingDirectory)/cicd/build.sh
       displayName: "Build Docker images"
 
     - script: ./cicd/push.sh
