@@ -32,17 +32,17 @@ stages:
         secureFile: 'git_ssh_key'
     
     - task: DownloadSecureFile@1
-        displayName: 'Download magento authentication file'
-        name: 'auth_file'
-        inputs:
-          secureFile: 'auth.json'
+      displayName: 'Download magento authentication file'
+      name: 'auth_file'
+      inputs:
+        secureFile: 'auth.json'
               
     - bash: mv $(Agent.TempDirectory)/auth.json $(System.DefaultWorkingDirectory)/
       displayName: "Move auth_file to working directory"
 
     - bash: |
         export SSH_PRIVATE_KEY=`cat $(Agent.TempDirectory)/git_ssh_key`
-        $(System.DefaultWorkingDirectory)/cicd/build.sh
+        "$(System.DefaultWorkingDirectory)/cicd/build.sh"
       displayName: "Build Docker images"
 
     - script: ./cicd/push.sh
