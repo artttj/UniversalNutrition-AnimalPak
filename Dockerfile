@@ -3,11 +3,15 @@ ARG CLIENT_THEME="SomethingDigital/bryantpark"
 ARG MAGENTO_THEME="Magento/backend"
 ARG MAGE_MODE=developer
 ARG MAGE_FRONTEND_THEMES="Magento/backend SomethingDigital/bryantpark"
-ARG MAG_BASE_IMAGE="magento-php-fpm-7.2:latest"
+ARG MAG_BASE_IMAGE="somethingdigital.azurecr.io/base-images/magento-php-fpm:7.2-dev"
 
 FROM ${MAG_BASE_IMAGE} as build
-
 ARG SSH_PRIVATE_KEY
+ARG BASE_URL
+ARG CLIENT_THEME
+ARG MAGENTO_THEME
+ARG MAGE_MODE
+ARG MAGE_FRONTEND_THEMES
 
 RUN mkdir -p /var/www/.ssh && \
     echo "${SSH_PRIVATE_KEY}" > /var/www/.ssh/id_rsa && \
@@ -22,18 +26,11 @@ COPY composer-patches composer-patches
 RUN composer install --no-interaction && rm -rf /var/www/.composer
 
 COPY --chown=app:app . /var/www/html
+
+RUN wget -O /var/www/html/bin/n98-magerun2.phar https://files.magerun.net/n98-magerun2.phar && \
+    chmod +x /var/www/html/bin/n98-magerun2.phar
+
 RUN composer dump-autoload --no-interaction
-
-FROM ${MAG_BASE_IMAGE}
-ARG BASE_URL
-ARG CLIENT_THEME
-ARG MAGENTO_THEME
-ARG MAGE_MODE
-ARG MAGE_FRONTEND_THEMES
-
-COPY --from=build \
-     --chown=app:app \
-     /var/www/html /var/www/html
 
 RUN yarn && \
     cd /var/www/html/vendor/somethingdigital/magento2-theme-bryantpark && \
@@ -50,5 +47,10 @@ RUN php /var/www/html/bin/magento sd:dev:static ${CLIENT_THEME} && \
 
 RUN /bin/bash -c "source /etc/profile; yarn build"
 
-RUN wget -O /var/www/html/bin/n98-magerun2.phar https://files.magerun.net/n98-magerun2.phar && \
-    chmod +x /var/www/html/bin/n98-magerun2.phar
+FROM ${MAG_BASE_IMAGE}
+
+COPY --from=build \
+     --chown=app:app \
+     /var/www/html /var/www/html
+
+VOLUME /var/www

@@ -7,3 +7,4 @@ Dockerfile
 ./compose
 ./generated/*
 ./vendor/*
+./app/etc/env.php

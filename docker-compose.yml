@@ -3,54 +3,61 @@ version: "3.6"
 services:
 
   proxy:
-    image: nginx-php-app:latest
+    image: somethingdigital.azurecr.io/base-images/nginx-php-app:dev
+    restart: unless-stopped
     ports:
       - "80:8000"
       - "443:8443"
     volumes:
-      - ./env/nginx-proxy.conf:/etc/nginx/conf.d/default.conf
+      - ./compose/env/nginx-proxy.conf:/etc/nginx/conf.d/default.conf
 
   varnish:
     image: varnish:6.0
+    restart: unless-stopped
     volumes:
-      - ./env/default.vcl:/etc/varnish/default.vcl
+      - ./compose/env/default.vcl:/etc/varnish/default.vcl
 
   app:
-    image: nginx-php-app:latest
+    image: somethingdigital.azurecr.io/base-images/nginx-php-app:dev
+    restart: unless-stopped
     ports:
       - "8000:8000"
     volumes: &appvolumes
-      - ~/.ssh:/var/www/.ssh
+      - ~/.ssh:/var/www/.ssh:delegated
       - ~/.composer:/var/www/.composer:delegated
-      - ../nginx.conf.sample:/var/www/html/nginx.conf:delegated
-      - ../app/etc/env.php-local:/var/www/html/app/etc/env.php
       - appdata:/var/www/html
+      - ./compose/env/env.php-local:/var/www/html/app/etc/env.php:delegated
+      - ./nginx.conf.sample:/var/www/html/nginx.conf:delegated
       - sockdata:/sock
 
   phpfpm:
-    image: accelerator:latest
+    image: somethingdigital.azurecr.io/accelerator:7.2
+    restart: unless-stopped
     volumes: *appvolumes
 
   db:
     image: percona:5.7
+    restart: unless-stopped
     ports:
       - "3306:3306"
-    env_file: env/db.env
+    env_file: compose/env/db.env
     volumes:
       - dbdata:/var/lib/mysql
-      - ./files/db/:/docker-entrypoint-initdb.d/
+      - ./compose/files/db/:/docker-entrypoint-initdb.d/
 
   redis:
     image: redis:5.0
 
   elasticsearch:
     image: elasticsearch:6.8.6
+    restart: unless-stopped
     ports:
       - "9200:9200"
       - "9300:9300"
 
   rabbitmq:
     image: rabbitmq
+    restart: unless-stopped
     expose:
       - '5672'
     volumes:
@@ -63,6 +70,7 @@ services:
   # Disabling cron by default, enable if needed
   #cron:
   #  image: magento-php-fpm-7.2:latest
+  #  restart: unless-stopped
   #  user: root
   #  command: /usr/local/bin/cronstart
   #  tty: true

@@ -4,24 +4,25 @@ services:
   app:
     volumes: &appvolumes
       # Host mounts with performance penalty, only put what is necessary here
-       - ../app/code:/var/www/html/app/code:delegated
-       - ../app/design:/var/www/html/app/design:delegated
-       - ../app/etc:/var/www/html/app/etc:delegated
-       - ../composer.json:/var/www/html/composer.json:delegated
-       - ../composer.lock:/var/www/html/composer.lock:delegated
-       - ../composer-patches:/var/www/html/composer-patches:delegated
-      #- ./src/var/log:/var/www/html/var/log:delegated
-      #- ./src/var/report:/var/www/html/var/report:delegated
+       - ./app/code:/var/www/html/app/code:delegated
+       - ./app/design:/var/www/html/app/design:delegated
+       - ./app/etc:/var/www/html/app/etc:delegated
+       - ./composer.json:/var/www/html/composer.json:delegated
+       - ./composer.lock:/var/www/html/composer.lock:delegated
+       - ./composer-patches:/var/www/html/composer-patches:delegated
+      #- ./logs/var/log:/var/www/html/var/log:delegated
+      #- ./logs/var/report:/var/www/html/var/report:delegated
 
   phpfpm:
     volumes: *appvolumes
     # Linux only: host.docker.internal doesn't exist https://github.com/docker/for-linux/issues/264
     # Uncomment two lines below & replace IP with result of: docker run --rm alpine ip route | awk 'NR==1 {print $3}'
-    extra_hosts:
-      - "host.docker.internal:IP"
+    # extra_hosts:
+    #   - "host.docker.internal:IP"
 
   mailhog:
     image: mailhog/mailhog
+    restart: unless-stopped
     ports:
       - "1025"
       - "8025:8025"
