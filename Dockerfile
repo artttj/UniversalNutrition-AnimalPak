@@ -3,8 +3,9 @@ ARG CLIENT_THEME="SomethingDigital/bryantpark"
 ARG MAGENTO_THEME="Magento/backend"
 ARG MAGE_MODE=developer
 ARG MAGE_FRONTEND_THEMES="Magento/backend SomethingDigital/bryantpark"
+ARG MAG_BASE_IMAGE="magento-php-fpm-7.2:latest"
 
-FROM magento-php-fpm-7.2:latest as build
+FROM ${MAG_BASE_IMAGE} as build
 
 ARG SSH_PRIVATE_KEY
 
@@ -23,7 +24,7 @@ RUN composer install --no-interaction && rm -rf /var/www/.composer
 COPY --chown=app:app . /var/www/html
 RUN composer dump-autoload --no-interaction
 
-FROM magento-php-fpm-7.2:latest
+FROM ${MAG_BASE_IMAGE}
 ARG BASE_URL
 ARG CLIENT_THEME
 ARG MAGENTO_THEME
