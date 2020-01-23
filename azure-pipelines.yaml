@@ -30,6 +30,9 @@ stages:
       name: 'auth_file'
       inputs:
         secureFile: 'auth.json'
+    
+    - bash: mv $(Agent.TempDirectory)/auth.json $(System.DefaultWorkingDirectory)/
+      displayName: "Move auth_file to working directory"
 
     - script: ./cicd/build.sh
       displayName: "Build Docker images"
