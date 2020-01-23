@@ -24,6 +24,17 @@ stages:
       inputs:
         containerRegistry: "$(IMAGE_REGISTRY_CONNECTION)"
         command: 'login'
+
+    - task: DownloadSecureFile@1
+      displayName: "Get ssh key"
+      name: 'git_ssh_key'
+      inputs:
+        secureFile: 'git_ssh_key'
+    
+    - bash: |
+        export SSH_PRIVATE_KEY=`cat $(Agent.TempDirectory)/git_ssh_key`
+        echo "##vso[task.setvariable variable=SSH_PRIVATE_KEY]$SSH_PRIVATE_KEY"
+      displayName: "Set the shell variable from file"
         
     - task: DownloadSecureFile@1
       displayName: 'Download magento authentication file'
