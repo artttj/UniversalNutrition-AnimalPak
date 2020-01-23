@@ -27,7 +27,7 @@ stages:
         
     - task: DownloadSecureFile@1
       displayName: 'Download magento authentication file'
-      name: 'auth.json'
+      name: 'auth_file'
       inputs:
         secureFile: 'auth.json'
 
