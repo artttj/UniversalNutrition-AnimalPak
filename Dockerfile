@@ -3,7 +3,7 @@ ARG CLIENT_THEME="SomethingDigital/bryantpark"
 ARG MAGENTO_THEME="Magento/backend"
 ARG MAGE_MODE=developer
 ARG MAGE_FRONTEND_THEMES="Magento/backend SomethingDigital/bryantpark"
-ARG MAG_BASE_IMAGE="somethingdigital.azurecr.io/base-images/magento-php-fpm:7.2-dev"
+ARG MAG_BASE_IMAGE="sdmagentodev.azurecr.io/base-images/magento-php-fpm:7.2-dev"
 
 FROM ${MAG_BASE_IMAGE} as build
 ARG SSH_PRIVATE_KEY

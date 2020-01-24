@@ -1,6 +1,5 @@
 variables:
-    IMAGE_REGISTRY: "bbsomethingdigital.azurecr.io"
-    IMAGE_REGISTRY_CONNECTION: "bb-somethingdigital-dev"
+  IMAGE_REGISTRY_CONNECTION: "bb-somethingdigital-dev"
       
 trigger:
   batch: true
@@ -44,6 +43,11 @@ stages:
         export SSH_PRIVATE_KEY=`cat $(Agent.TempDirectory)/git_ssh_key`
         "$(System.DefaultWorkingDirectory)/cicd/build.sh"
       displayName: "Build Docker images"
-
+    
+    - script: ./cicd/test.sh
+      displayName: "Test Docker images"
+      env:
+        AZURE_STORAGE_KEY: $(AZURE_STORAGE_KEY)
+    
     - script: ./cicd/push.sh
       displayName: "Push Docker images"

@@ -3,7 +3,7 @@ version: "3.6"
 services:
 
   proxy:
-    image: somethingdigital.azurecr.io/base-images/nginx-php-app:dev
+    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/base-images/nginx-php-app:${MAG_IMAGE_TAG:-dev}
     restart: unless-stopped
     ports:
       - "80:8000"
@@ -18,7 +18,7 @@ services:
       - ./compose/env/default.vcl:/etc/varnish/default.vcl
 
   app:
-    image: somethingdigital.azurecr.io/base-images/nginx-php-app:dev
+    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/base-images/nginx-php-app:${MAG_IMAGE_TAG:-dev}
     restart: unless-stopped
     ports:
       - "8000:8000"
@@ -31,7 +31,7 @@ services:
       - sockdata:/sock
 
   phpfpm:
-    image: somethingdigital.azurecr.io/accelerator:7.2
+    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/accelerator:7.2
     restart: unless-stopped
     volumes: *appvolumes
 
