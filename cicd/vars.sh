@@ -3,7 +3,7 @@
 set -e
 . "$(dirname $0)/util.sh"
 
-export AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT:-"sdmagentsadev"}
+export AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT:-"sasdmagentodev"}
 
 export IMAGE_REGISTRY=${IMAGE_REGISTRY:-"sdmagentodev.azurecr.io"}
 export IMAGE_VERSION=${IMAGE_VERSION:-"7.2"}
