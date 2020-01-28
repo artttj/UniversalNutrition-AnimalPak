@@ -16,6 +16,8 @@ services:
   varnish:
     image: varnish:6.0
     restart: unless-stopped
+    depends_on:
+      - app
     volumes:
       - ./compose/env/default.vcl:/etc/varnish/default.vcl
 
@@ -38,6 +40,11 @@ services:
     image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/accelerator:${IMAGE_TAG:-7.2}
     restart: unless-stopped
     volumes: *appvolumes
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+      - elasticsearch
 
   db:
     image: mariadb:10.4.11
