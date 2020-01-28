@@ -5,6 +5,8 @@ services:
   proxy:
     image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/base-images/nginx-php-app:${MAG_IMAGE_TAG:-dev}
     restart: unless-stopped
+    depends_on:
+      - varnish
     ports:
       - "80:8000"
       - "443:8443"
@@ -20,6 +22,8 @@ services:
   app:
     image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/base-images/nginx-php-app:${MAG_IMAGE_TAG:-dev}
     restart: unless-stopped
+    depends_on:
+      - phpfpm
     ports:
       - "8000:8000"
     volumes: &appvolumes
@@ -36,7 +40,7 @@ services:
     volumes: *appvolumes
 
   db:
-    image: percona:5.7
+    image: mariadb:10.4.11
     restart: unless-stopped
     ports:
       - "3306:3306"

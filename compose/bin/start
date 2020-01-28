@@ -6,4 +6,13 @@ cd ${COMPOSE_DIR}/
 
 export COMPOSE_HTTP_TIMEOUT=300
 
+
+if ! (ls compose/files/db/*.sql >/dev/null 2>&1 || ls compose/files/db/*.gz >/dev/null 2>&1); then
+  printf "No .sql or .sql.gz file present in compose/files/db.\nSite may not function correctly without a database.\nContinue [Y/N]?"
+  read reply
+  if [[ ! ($reply == 'Y' || $reply == 'y') ]]; then
+    exit 1
+  fi
+fi
+
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d
