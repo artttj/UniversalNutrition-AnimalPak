@@ -19,19 +19,19 @@ stages:
       displayName: "Login to container registry"
       inputs:
         containerRegistry: "$(IMAGE_REGISTRY_CONNECTION)"
-        command: 'login'
+        command: "login"
 
     - task: DownloadSecureFile@1
       displayName: "Get ssh key"
-      name: '$(GITHUB_SSH_KEY)'
+      name: "$(GITHUB_SSH_KEY)"
       inputs:
-        secureFile: 'github_ssh_key'
+        secureFile: "github_ssh_key"
     
     - task: DownloadSecureFile@1
-      displayName: 'Download magento authentication file'
-      name: '$(AUTH_JSON)'
+      displayName: "Download magento authentication file"
+      name: "$(AUTH_JSON)"
       inputs:
-        secureFile: 'auth.json'
+        secureFile: "auth.json"
               
     - bash: mv $(Agent.TempDirectory)/auth.json $(System.DefaultWorkingDirectory)/
       displayName: "Move auth_file to working directory"
@@ -41,10 +41,10 @@ stages:
         "$(System.DefaultWorkingDirectory)/cicd/build.sh"
       displayName: "Build Docker images"
     
-    - script: ./cicd/test.sh
+    - bash: ./cicd/test.sh
       displayName: "Test Docker images"
       env:
         AZURE_STORAGE_KEY: $(AZURE_STORAGE_KEY)
     
-    - script: ./cicd/push.sh
+    - bash: ./cicd/push.sh
       displayName: "Push Docker images"
