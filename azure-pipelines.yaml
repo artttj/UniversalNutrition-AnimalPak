@@ -1,6 +1,3 @@
-variables:
-  IMAGE_REGISTRY_CONNECTION: "bb-somethingdigital-dev"
-      
 trigger:
   batch: true
   branches:
@@ -26,13 +23,13 @@ stages:
 
     - task: DownloadSecureFile@1
       displayName: "Get ssh key"
-      name: 'git_ssh_key'
+      name: '$(GITHUB_SSH_KEY)'
       inputs:
-        secureFile: 'git_ssh_key'
+        secureFile: 'github_ssh_key'
     
     - task: DownloadSecureFile@1
       displayName: 'Download magento authentication file'
-      name: 'auth_file'
+      name: '$(AUTH_JSON)'
       inputs:
         secureFile: 'auth.json'
               
@@ -40,7 +37,7 @@ stages:
       displayName: "Move auth_file to working directory"
 
     - bash: |
-        export SSH_PRIVATE_KEY=`cat $(Agent.TempDirectory)/git_ssh_key`
+        export SSH_PRIVATE_KEY=`cat $(Agent.TempDirectory)/github_ssh_key`
         "$(System.DefaultWorkingDirectory)/cicd/build.sh"
       displayName: "Build Docker images"
     
