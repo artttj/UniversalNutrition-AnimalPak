@@ -23,21 +23,21 @@ stages:
 
     - task: DownloadSecureFile@1
       displayName: "Get ssh key"
-      name: "$(GITHUB_SSH_KEY)"
+      name: "github_ssh_key"
       inputs:
-        secureFile: "github_ssh_key"
+        secureFile: "github-deployment"
     
     - task: DownloadSecureFile@1
       displayName: "Download magento authentication file"
-      name: "$(AUTH_JSON)"
+      name: "auth_json"
       inputs:
-        secureFile: "auth.json"
+        secureFile: "accelerator-auth-json"
               
-    - bash: mv $(Agent.TempDirectory)/auth.json $(System.DefaultWorkingDirectory)/
+    - bash: mv $(Agent.TempDirectory)/accelerator-auth-json $(System.DefaultWorkingDirectory)/auth.json
       displayName: "Move auth_file to working directory"
 
     - bash: |
-        export SSH_PRIVATE_KEY=`cat $(Agent.TempDirectory)/github_ssh_key`
+        export SSH_PRIVATE_KEY=`cat $(Agent.TempDirectory)/github-deployment`
         "$(System.DefaultWorkingDirectory)/cicd/build.sh"
       displayName: "Build Docker images"
     
