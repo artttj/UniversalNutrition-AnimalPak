@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+. "$(dirname $0)/util.sh"
+
+export AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT:-"sasdmagentodev"}
+
+export IMAGE_REGISTRY=${IMAGE_REGISTRY:-"sdmagentodev.azurecr.io"}
+export IMAGE_VERSION=${IMAGE_VERSION:-"7.2"}
+export IMAGE_TAG=${IMAGE_TAG:-${IMAGE_VERSION}-${BUILD_SOURCEBRANCHNAME:-dev}}
+export MAG_BASE_VERSION=${MAG_BASE_VERSION:-7.2}
+export MAG_IMAGE_TAG=${MAG_IMAGE_TAG:-master}
+export MAG_BASE_IMAGE=${MAG_BASE_IMAGE:-${IMAGE_REGISTRY}/base-images/magento-php-fpm:${MAG_BASE_VERSION}-${MAG_IMAGE_TAG}}
+
+export TEST_WAIT_SECS=${TEST_WAIT_SECS:-30}
+
+echo "Using Variables:"
+echo "  AZURE_STORAGE_ACCOUNT: ${AZURE_STORAGE_ACCOUNT}"
+echo "  IMAGE_REGISTRY: ${IMAGE_REGISTRY}"
+echo "  IMAGE_VERSION: ${IMAGE_VERSION}"
+echo "  IMAGE_TAG: ${IMAGE_TAG}"
+echo "  MAG_BASE_VERSION: ${MAG_BASE_VERSION}"
+echo "  MAG_IMAGE_TAG: ${MAG_IMAGE_TAG}"
+echo "  MAG_BASE_IMAGE: ${MAG_BASE_IMAGE}"
+echo "  TEST_WAIT_SECS: ${TEST_WAIT_SECS}"

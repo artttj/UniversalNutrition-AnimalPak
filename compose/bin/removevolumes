@@ -1,0 +1,10 @@
+#!/bin/bash
+cd $(dirname $0)
+BIN_DIR=$(pwd)
+COMPOSE_DIR=${BIN_DIR}/../..
+cd ${COMPOSE_DIR}/
+
+current_folder=${PWD##*/}
+docker volume rm ${current_folder}_appdata
+docker volume rm ${current_folder}_dbdata
+docker volume rm ${current_folder}_sockdata

@@ -1,0 +1,10 @@
+vendor/
+Dockerfile
+.docker
+.git
+.github
+./docker-compose*
+./compose
+./generated/*
+./vendor/*
+./app/etc/env.php

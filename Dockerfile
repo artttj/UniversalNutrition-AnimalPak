@@ -1,50 +1,56 @@
-FROM 754729414608.dkr.ecr.us-east-2.amazonaws.com/magento2:php7.1-nginx
-
-ARG MAGE_MODE=development
-ARG NODEJS_VERSION=v9.2.1
+ARG BASE_URL=magento.test
+ARG CLIENT_THEME="SomethingDigital/bryantpark"
+ARG MAGENTO_THEME="Magento/backend"
+ARG MAGE_MODE=developer
 ARG MAGE_FRONTEND_THEMES="Magento/backend SomethingDigital/bryantpark"
-ARG REVISION=v2.10.0
-ARG COPY_TLS_CERTS='false'
+ARG MAG_BASE_IMAGE="sdmagentodev.azurecr.io/base-images/magento-php-fpm:7.2-dev"
 
-ENV "SITE_DOMAIN" "magento.test"
-ENV "MAGENTO_ROOT" "/var/www/vhosts/${SITE_DOMAIN}/current"
+FROM ${MAG_BASE_IMAGE} as build
+ARG SSH_PRIVATE_KEY
+ARG BASE_URL
+ARG CLIENT_THEME
+ARG MAGENTO_THEME
+ARG MAGE_MODE
+ARG MAGE_FRONTEND_THEMES
 
-# copy private key
-COPY --chown=magento:magento files/vault_pass /home/magento/.vault_pass
+RUN mkdir -p /var/www/.ssh && \
+    echo "${SSH_PRIVATE_KEY}" > /var/www/.ssh/id_rsa && \
+    chmod 0600 /var/www/.ssh/id_rsa && \
+    touch /var/www/.ssh/known_hosts && \
+    ssh-keyscan github.com >> /var/www/.ssh/known_hosts
 
-# give sudo privilege to magento user
-RUN echo "magento      ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/magento
+COPY composer.json composer.json
+COPY composer.lock composer.lock
+COPY auth.json auth.json
+COPY composer-patches composer-patches
+RUN composer install --no-interaction && rm -rf /var/www/.composer
 
-# clone repository
-COPY --chown=magento:nginx ./ ${MAGENTO_ROOT}
+COPY --chown=app:app . /var/www/html
 
-# switch to user magento with nginx as group
-USER magento:nginx
+RUN wget -O /var/www/html/bin/n98-magerun2.phar https://files.magerun.net/n98-magerun2.phar && \
+    chmod +x /var/www/html/bin/n98-magerun2.phar
 
-WORKDIR ${MAGENTO_ROOT}
+RUN composer dump-autoload --no-interaction
 
-# run prebuild play
-COPY --chown=magento:magento files/vault_pass /home/magento/.vault_pass
-RUN ansible-playbook provision.yml \
-    --vault-id /home/magento/.vault_pass \
-    -e copy_tls_certs=${COPY_TLS_CERTS} \
-    -t image,owner
-RUN rm "${MAGENTO_ROOT}/files" -rf
+RUN yarn && \
+    cd /var/www/html/vendor/somethingdigital/magento2-theme-bryantpark && \
+    yarn && \
+    cd /var/www/html/vendor/snowdog/frontools && \
+    yarn && \
+    cd /var/www/html
 
-# run build play
-RUN ansible-playbook provision.yml \
-    -t build
+RUN php /var/www/html/bin/magento setup:di:compile && \
+    php bin/magento setup:static-content:deploy -f
 
-# set volume
-VOLUME ${MAGENTO_ROOT}
+RUN php /var/www/html/bin/magento sd:dev:static ${CLIENT_THEME} && \
+    php /var/www/html/bin/magento sd:dev:static --area=adminhtml ${MAGENTO_THEME}
 
-# exposed ports
-EXPOSE 80
-EXPOSE 443
+RUN /bin/bash -c "source /etc/profile; yarn build"
 
-# switch to root:nginx user:group
-USER magento:nginx
+FROM ${MAG_BASE_IMAGE}
 
-ENTRYPOINT ["/usr/bin/tini", "--", "sudo", "/docker-entrypoint.sh"]
+COPY --from=build \
+     --chown=app:app \
+     /var/www/html /var/www/html
 
-CMD ["tail", "-f", "/etc/machine-id"]
+VOLUME /var/www
