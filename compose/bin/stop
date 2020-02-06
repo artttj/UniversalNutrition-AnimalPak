@@ -3,5 +3,5 @@ cd $(dirname $0)
 BIN_DIR=$(pwd)
 COMPOSE_DIR=${BIN_DIR}/../..
 
-cd ${COMPOSE_DIR}/
+cd "${COMPOSE_DIR}/"
 docker-compose -f docker-compose.yml -f docker-compose-dev.yml stop
