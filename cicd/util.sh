@@ -7,29 +7,29 @@ download () {
     download_path="$2"
     [ -z "$download_path" ] && download_path="$1"
 
-    if [ -n "$AZURE_STORAGE_KEY" ]
-    then
-        az storage blob download \
-            --account-name "$AZURE_STORAGE_ACCOUNT" \
-            --account-key "$AZURE_STORAGE_KEY" \
-            --container-name "dbscripts" \
-            --name "$1" \
-            --file "$download_path" \
-            > /dev/null
-    else
-        found=`az storage account list --query "[?name=='$AZURE_STORAGE_ACCOUNT'].name" -o tsv | wc -l`
-        if [ $found -eq 1 ]
-        then
-            connection_string=`az storage account show-connection-string --name $AZURE_STORAGE_ACCOUNT`
+    # Exit if file already exists
+    [ -f "$download_path" ] && echo "Found $download_path" && exit
 
-            az storage blob download \
-                --connection-string "$connection_string" \
-                --container-name "dbscripts" \
-                --name "$1" \
-                --file "$download_path" \
-                > /dev/null
+    echo "Downloading $1"
+
+    # Get storage key from current login if not provided
+    if [ -z "$AZURE_STORAGE_KEY" ]; then
+        found=`az storage account list --query "[?name=='$AZURE_STORAGE_ACCOUNT'].name" -o tsv | wc -l`
+        if [ $found -eq 1 ]; then
+          AZURE_STORAGE_KEY=`az storage account keys list --account-name ${AZURE_STORAGE_ACCOUNT} | jq -r '.[0].value'`
         else
-            echo "Either AZURE_STORAGE_KEY / 'az login' not available or Storage account not found" && exit 1
+            echo "Either AZURE_STORAGE_KEY / 'az login' not available" && exit 1
         fi
     fi
+    
+    connection_string="{ 'connectionString': 'DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=${AZURE_STORAGE_ACCOUNT};AccountKey=${AZURE_STORAGE_KEY}' }"
+    container=$(dirname $1)
+    blob=$(basename $1)
+
+    az storage blob download \
+        --connection-string "$connection_string" \
+        --container-name "$container" \
+        --name "$blob" \
+        --file "$download_path" \
+        > /dev/null
 }
