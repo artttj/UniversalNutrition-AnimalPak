@@ -1,0 +1,54 @@
+commands:
+  N98\Magento\Command\Database\DumpCommand:
+    table-groups:
+      - id: "sd-dev"
+        description: "Tables to strip for local development"
+        tables: >-
+          @admin
+          @development
+          @sales
+          @stripped
+          amazon_*
+          avatax_*
+          bronto_*
+          catalogsearch_*
+          customer_address_*
+          customer_dummy_cl
+          customer_entity*
+          customer_visitor
+          elasticsuite_*
+          ebizmarts_pos_email_*
+          email_*
+          fastly_*
+          *_flat*
+          gift_*
+          import*
+          klarna_*
+          logicbroker_inventory_history
+          magento_customer*
+          magento_giftcard*
+          magento_rma*
+          magento_sales_*
+          mailchimp_*
+          mcom_*
+          mom_rma_item_entity
+          newsletter_*
+          password_*
+          paypal_*
+          quote*
+          reflektion_job
+          release_notification_viewer_log
+          report_event_types
+          sales_order_status
+          sales_order_status_label
+          sales_order_status_state
+          scconnector_*
+          sd_adminnotify_history
+          sd_bonuscash_queue
+          sd_canceled_item_sent
+          sd_creditmemo_item_sent
+          sd_shipment_item_sent
+          sendfriend_log
+          signifyd_*
+          shipperhq_*
+          ub_migrate_*
