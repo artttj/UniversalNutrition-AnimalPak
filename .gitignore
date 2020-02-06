@@ -21,7 +21,8 @@ auth.json
 /files
 /.docker-sync
 /provision.retry
-
+# Vim
+**.swp
 
 ### Magento OOB .gitignore
 ### Do not edit anything below this line
