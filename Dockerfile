@@ -1,8 +1,5 @@
-ARG BASE_URL=magento.test
 ARG CLIENT_THEME="SomethingDigital/bryantpark"
 ARG MAGENTO_THEME="Magento/backend"
-ARG MAGE_MODE=developer
-ARG MAGE_FRONTEND_THEMES="Magento/backend SomethingDigital/bryantpark"
 ARG MAG_BASE_IMAGE="sdmagentodev.azurecr.io/base-images/magento-php-fpm:7.2-develop"
 
 FROM ${MAG_BASE_IMAGE} as build
@@ -21,13 +18,9 @@ COPY composer-patches composer-patches
 RUN composer install --no-interaction && rm -rf /var/www/.composer
 
 
-
 FROM ${MAG_BASE_IMAGE}
-ARG BASE_URL
 ARG CLIENT_THEME
 ARG MAGENTO_THEME
-ARG MAGE_MODE
-ARG MAGE_FRONTEND_THEMES
 
 COPY --chown=app:app . /var/www/html
 
@@ -54,6 +47,5 @@ RUN php /var/www/html/bin/magento sd:dev:static ${CLIENT_THEME} && \
     php /var/www/html/bin/magento sd:dev:static --area=adminhtml ${MAGENTO_THEME}
 
 RUN /bin/bash -c "source /etc/profile; yarn build"
-
 
 VOLUME /var/www
