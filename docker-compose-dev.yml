@@ -27,6 +27,3 @@ services:
       - "1025"
       - "8025:8025"
 
-  # Disabling cron by default as it uses higher CPU, enable if needed
-  #cron:
-  #  volumes: *appvolumes

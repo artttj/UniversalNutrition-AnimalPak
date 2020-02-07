@@ -78,16 +78,6 @@ services:
       RABBITMQ_DEFAULT_PASS: password
       RABBITMQ_DEFAULT_VHOST: /magento
 
-  # Disabling cron by default, enable if needed
-  #cron:
-  #  image: magento-php-fpm-7.2:latest
-  #  restart: unless-stopped
-  #  user: root
-  #  command: /usr/local/bin/cronstart
-  #  tty: true
-  #  links:
-  #    - db
-  #  volumes: *appvolumes
 
 volumes:
   appdata:

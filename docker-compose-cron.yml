@@ -1,0 +1,21 @@
+version: "3.6"
+
+services:
+  cron:
+    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/base-images/magento-php-fpm:${IMAGE_TAG:-develop}
+    restart: unless-stopped
+    user: root
+    command: /usr/local/bin/cronstart
+    tty: true
+    links:
+      - db
+    depends_on:
+      - phpfpm
+    volumes:
+      - appdata:/var/www/html
+      - ./app/code:/var/www/html/app/code:delegated
+      - ./app/design:/var/www/html/app/design:delegated
+      - ./app/etc:/var/www/html/app/etc:delegated
+
+    
+

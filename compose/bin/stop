@@ -4,4 +4,10 @@ BIN_DIR=$(pwd)
 COMPOSE_DIR=${BIN_DIR}/../..
 
 cd "${COMPOSE_DIR}/"
-docker-compose -f docker-compose.yml -f docker-compose-dev.yml stop
+
+COMMON_ARGS="-f docker-compose.yml -f docker-compose-dev.yml"
+if docker-compose $COMMON_ARGS -f docker-compose-cron.yml ps -q cron 1>/dev/null 2>&1; then
+  docker-compose $COMMON_ARGS -f docker-compose-dev.yml -f docker-compose-cron.yml stop
+else
+  docker-compose $COMMON_ARGS stop
+fi
