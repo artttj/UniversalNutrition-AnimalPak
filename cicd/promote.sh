@@ -2,5 +2,5 @@
 
 . "$(dirname $0)/vars.sh"
 
-docker tag ${IMAGE_REGISTRY}/accelerator:${IMAGE_TAG} ${IMAGE_REGISTRY}/accelerator:latest
-docker push ${IMAGE_REGISTRY}/accelerator:latest
+docker tag ${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_REGISTRY}/${IMAGE_NAME}:latest
+docker push ${IMAGE_REGISTRY}/${IMAGE_NAME}:latest

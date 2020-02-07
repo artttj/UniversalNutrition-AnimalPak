@@ -37,7 +37,7 @@ services:
       - sockdata:/sock
 
   phpfpm:
-    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/accelerator:${IMAGE_TAG:-develop}
+    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/${IMAGE_NAME:-accelerator}:${IMAGE_TAG:-develop}
     restart: unless-stopped
     volumes: *appvolumes
     depends_on:
