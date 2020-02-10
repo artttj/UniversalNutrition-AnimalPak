@@ -58,6 +58,7 @@ services:
 
   redis:
     image: redis:5.0
+    restart: unless-stopped
 
   elasticsearch:
     image: elasticsearch:6.8.6
