@@ -7,7 +7,7 @@ COMPOSE_DIR=${BIN_DIR}/../..
 CICD_DIR=${BIN_DIR}/../../cicd
 cd "${COMPOSE_DIR}/"
 
-export COMPOSE_HTTP_TIMEOUT=300
+export COMPOSE_HTTP_TIMEOUT=600
 
 if ! (ls compose/files/db/*.sql >/dev/null 2>&1 || ls compose/files/db/*.gz >/dev/null 2>&1); then
   $CICD_DIR/get-db.sh
