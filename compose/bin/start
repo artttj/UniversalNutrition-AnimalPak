@@ -13,18 +13,35 @@ if ! (ls compose/files/db/*.sql >/dev/null 2>&1 || ls compose/files/db/*.gz >/de
   $CICD_DIR/get-db.sh
 fi
 
-COMPOSE_ARGS="-f docker-compose.yml -f docker-compose-dev.yml"
+COMPOSE_DEV="yes"
+COMPOSE_CRON="no"
+
+COMPOSE_ARGS="-f docker-compose.yml"
 for arg in "$@"
 do
   case $arg in
     -h|--help)
       echo "Supported arguments:"
       echo "  --enable-cron      Enable php cronjob container"
+      echo "  --disable-dev           No dev stack"
       exit
       ;;
     --enable-cron)
-      COMPOSE_ARGS="${COMPOSE_ARGS} -f docker-compose-cron.yml"
+      COMPOSE_CRON="yes"
+      ;;
+    --disable-dev)
+      COMPOSE_DEV="no"
+      ;;
     esac
 done
+
+if [[ ${COMPOSE_DEV} = "yes" ]]; then
+   COMPOSE_ARGS="${COMPOSE_ARGS} -f docker-compose-dev.yml"
+fi
+
+if [[ ${COMPOSE_CRON} = "yes" ]]; then
+  COMPOSE_ARGS="${COMPOSE_ARGS} -f docker-compose-cron.yml"
+fi
+
 
 docker-compose ${COMPOSE_ARGS} up -d
