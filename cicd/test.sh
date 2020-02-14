@@ -16,6 +16,7 @@ if pgrep mysql; then
 fi
 
 echo "Starting docker containers."
+
 ./compose/bin/start
 
 echo "Wait $TEST_WAIT_SECS seconds for services to come up"
@@ -23,6 +24,7 @@ sleep $TEST_WAIT_SECS
 
 echo "Running setup:upgrade and tests"
 export COMPOSE_INTERACTIVE_NO_CLI=1
+if [ $USER == "vsts" ]; then sudo chmod -R a+rw ./app/etc; fi
 ./compose/bin/magento setup:upgrade
 STATUS=`curl -IkLs -m 300 https://magento.test | grep  HTTP/1.1 | tail -1 | cut -d$' ' -f2`
 echo "Test returned $STATUS status code"
@@ -33,5 +35,8 @@ echo "Stopping docker containers"
 
 popd
 
-# Validate test result
-[  $STATUS -ne "200" ] && exit 1
+if [  $STATUS == "200" ]; then
+  echo "Test passed successfully"
+else
+  exit 1
+fi
