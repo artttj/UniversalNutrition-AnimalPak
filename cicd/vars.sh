@@ -1,8 +1,8 @@
 #!/bin/bash
 
 set -e
-. "$(dirname $0)/util.sh"
-
+CICD_DIR=$(dirname "$0")
+. "${CICD_DIR}/util.sh"
 export AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT:-"sasdmagentodev"}
 
 export IMAGE_REGISTRY=${IMAGE_REGISTRY:-"sdmagentodev.azurecr.io"}

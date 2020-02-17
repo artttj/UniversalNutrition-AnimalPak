@@ -1,0 +1,30 @@
+#!/bin/bash
+
+BIN_DIR=$(dirname "$0")
+COMPOSE_DIR=${BIN_DIR}/../..
+cd "${COMPOSE_DIR}"
+
+# Include here any directories that should be synced from the
+# phpfpm image to the locally checked out repository
+SOURCE_DIRECTORIES="pub/static/frontend/SomethingDigital vendor/somethingdigital"
+
+# Bring up the phpfpm container so we can copy our source files from it
+docker-compose "$@" start phpfpm
+
+for dir in $SOURCE_DIRECTORIES; do
+  destination=${COMPOSE_DIR}/$(dirname "$dir")
+  if [ -d "${COMPOSE_DIR}/${dir}" ]; then
+    read -p "$dir already exists locally; your files may be overwritten. Continue [y/n]? " continue
+    if [[ "$continue" != y ]]; then
+      docker-compose "$@" stop phpfpm
+      exit 1
+    fi
+  else
+    mkdir -pv "$destination"
+  fi
+  echo "Copying $dir from phpfpm image..."
+  "${BIN_DIR}/copyfromcontainer" "$dir" "$destination"
+done
+
+# Halt phpfpm container so that it can restart in the correct `depends_on` order
+docker-compose "$@" stop phpfpm

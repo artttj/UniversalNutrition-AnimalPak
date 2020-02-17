@@ -10,11 +10,12 @@ cd "${COMPOSE_DIR}/"
 export COMPOSE_HTTP_TIMEOUT=600
 
 if ! (ls compose/files/db/*.sql >/dev/null 2>&1 || ls compose/files/db/*.gz >/dev/null 2>&1); then
-  $CICD_DIR/get-db.sh
+  "${CICD_DIR}/get-db.sh"
 fi
 
 COMPOSE_DEV="yes"
 COMPOSE_CRON="no"
+INTIALIZE_LOCAL="no"
 
 COMPOSE_ARGS="-f docker-compose.yml"
 for arg in "$@"
@@ -26,6 +27,9 @@ do
       echo "  --disable-dev           No dev stack"
       exit
       ;;
+    --init)
+      INITIALIZE_LOCAL="yes"
+      ;;
     --enable-cron)
       COMPOSE_CRON="yes"
       ;;
@@ -34,6 +38,10 @@ do
       ;;
     esac
 done
+
+if [[ ${INITIALIZE_LOCAL} = "yes" ]]; then
+  "${BIN_DIR}/init-local" ${COMPOSE_ARGS}
+fi
 
 if [[ ${COMPOSE_DEV} = "yes" ]]; then
    COMPOSE_ARGS="${COMPOSE_ARGS} -f docker-compose-dev.yml"
