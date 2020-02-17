@@ -24,7 +24,8 @@ do
     -h|--help)
       echo "Supported arguments:"
       echo "  --enable-cron      Enable php cronjob container"
-      echo "  --disable-dev           No dev stack"
+      echo "  --disable-dev      No dev stack"
+      echo "  --init             Initialize local development environment"
       exit
       ;;
     --init)

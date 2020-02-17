@@ -17,7 +17,7 @@ fi
 
 echo "Starting docker containers."
 
-./compose/bin/start
+./compose/bin/start --disable-dev
 
 echo "Wait $TEST_WAIT_SECS seconds for services to come up"
 sleep $TEST_WAIT_SECS
@@ -31,7 +31,7 @@ echo "Test returned $STATUS status code"
 [  $STATUS -ne "200" ] && curl -kLs -m 300 https://magento.test
 
 echo "Stopping docker containers"
-./compose/bin/stop 
+./compose/bin/stop
 
 popd
 
