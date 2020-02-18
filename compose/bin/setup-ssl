@@ -2,7 +2,7 @@
 cd $(dirname $0)
 BIN_DIR=$(pwd)
 COMPOSE_DIR=${BIN_DIR}/../..
-cd ${COMPOSE_DIR}/
+cd "${COMPOSE_DIR}/"
 
 [ -z "$1" ] && echo "Please specify a domain (ex. mydomain.test)" && exit
 
@@ -22,4 +22,4 @@ docker-compose exec -u root proxy mv $1-key.pem /etc/nginx/certs/nginx.key
 
 # Restart nginx to apply the updates
 echo "Restarting containers to apply updates..."
-${BIN_DIR}/restart
+"${BIN_DIR}/restart"

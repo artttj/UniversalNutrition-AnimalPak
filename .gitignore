@@ -1,5 +1,7 @@
 ### SD Ignored Files
 auth.json
+*.sql
+*.sql.gz
 
 ## Unused M2 files
 /CHANGELOG.md

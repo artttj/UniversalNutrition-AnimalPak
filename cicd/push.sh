@@ -5,6 +5,6 @@ set -e
 
 pushd "$(dirname $0)/.."
 
-docker push ${IMAGE_REGISTRY}/accelerator:${IMAGE_TAG}
+docker push ${IMAGE_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
 
 popd
