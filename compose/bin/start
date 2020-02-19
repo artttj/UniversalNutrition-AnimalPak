@@ -41,6 +41,10 @@ do
 done
 
 if [[ ${INITIALIZE_LOCAL} = "yes" ]]; then
+  dockcmd azure get-secrets \
+    --key-vault site-crypt-keys \
+    --input-file ./compose/env/env.php-local.template \
+    --output-file ./compose/env/env.php-local
   "${BIN_DIR}/init-local" ${COMPOSE_ARGS}
 fi
 
