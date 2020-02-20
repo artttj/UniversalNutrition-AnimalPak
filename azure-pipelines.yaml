@@ -68,9 +68,7 @@ stages:
       condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/tags')))
       env:
         AZURE_STORAGE_KEY: $(AZURE_STORAGE_KEY)
-        AZURE_CLIENT_ID: ${AZURE_CLIENT_ID}
-        AZURE_CLIENT_SECRET: ${AZURE_CLIENT_SECRET}
-        AZURE_TENANT_ID: ${AZURE_TENANT_ID}
+        AZURE_CLIENT_SECRET: $(AZURE_CLIENT_SECRET)
 
     - bash: ./cicd/push.sh
       displayName: "Push Docker images"
