@@ -16,8 +16,8 @@ if pgrep mysql; then
 fi
 
 echo "Download dockcmd"
-wget -O /usr/local/bin/dockcmd https://storage.googleapis.com/boxops/dockcmd/releases/linux-amd64/1.2.0/dockcmd
-chmod a+x /usr/local/bin/dockcmd
+sudo wget -O /usr/local/bin/dockcmd https://storage.googleapis.com/boxops/dockcmd/releases/linux-amd64/1.2.0/dockcmd
+sudo chmod a+x /usr/local/bin/dockcmd
 
 echo "Starting docker containers."
 
