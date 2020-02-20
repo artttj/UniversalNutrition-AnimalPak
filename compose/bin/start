@@ -7,7 +7,7 @@ COMPOSE_DIR=${BIN_DIR}/../..
 CICD_DIR=${BIN_DIR}/../../cicd
 cd "${COMPOSE_DIR}/"
 
-export COMPOSE_HTTP_TIMEOUT=600
+export COMPOSE_HTTP_TIMEOUT=900
 
 if ! (ls compose/files/db/*.sql >/dev/null 2>&1 || ls compose/files/db/*.gz >/dev/null 2>&1); then
   "${CICD_DIR}/get-db.sh"
@@ -42,7 +42,7 @@ done
 
 if [[ ${INITIALIZE_LOCAL} = "yes" ]]; then
   dockcmd azure get-secrets \
-    --key-vault site-crypt-keys \
+    --key-vault SDEnvironments \
     --input-file ./compose/env/env.php-local.template \
     --output-file ./compose/env/env.php-local
   "${BIN_DIR}/init-local" ${COMPOSE_ARGS}
