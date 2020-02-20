@@ -1,3 +1,6 @@
+variables:
+- group: Azure Service Principal
+
 pr:
   branches:
     include:

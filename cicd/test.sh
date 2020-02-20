@@ -15,6 +15,10 @@ if pgrep mysql; then
   sudo kill -SIGTERM $(pgrep mysql) >> /dev/null 2>&1 || true
 fi
 
+echo "Download dockcmd"
+wget -O /usr/local/bin/dockcmd https://storage.googleapis.com/boxops/dockcmd/releases/linux-amd64/1.2.0/dockcmd
+chmod a+x /usr/local/bin/dockcmd
+
 echo "Starting docker containers."
 
 ./compose/bin/start --disable-dev
