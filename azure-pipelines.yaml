@@ -1,5 +1,5 @@
 variables:
-- group: Azure Service Principal
+- group: 'Azure Service Principal'
 
 pr:
   branches:
