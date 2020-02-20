@@ -23,19 +23,19 @@ do
   case $arg in
     -h|--help)
       echo "Supported arguments:"
-      echo "  --enable-cron      Enable php cronjob container"
       echo "  --disable-dev      No dev stack"
+      echo "  --enable-cron      Enable php cronjob container"
       echo "  --init             Initialize local development environment"
       exit
       ;;
-    --init)
-      INITIALIZE_LOCAL="yes"
+    --disable-dev)
+      COMPOSE_DEV="no"
       ;;
     --enable-cron)
       COMPOSE_CRON="yes"
       ;;
-    --disable-dev)
-      COMPOSE_DEV="no"
+    --init)
+      INITIALIZE_LOCAL="yes"
       ;;
     esac
 done

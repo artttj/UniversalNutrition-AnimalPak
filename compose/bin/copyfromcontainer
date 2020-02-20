@@ -1,6 +1,7 @@
 #!/bin/bash
+set -e
+
 BIN_DIR=$(dirname "$0")
-cd "$BIN_DIR"
 COMPOSE_DIR=${BIN_DIR}/../..
 
 [ -z "$1" ] && echo "Please specify a directory or file to copy from container (ex. vendor, --all)" && exit
@@ -10,7 +11,8 @@ if [ "$1" == "--all" ]; then
   echo "Completed copying all files from container to host"
 else
   DESTINATION_DIR=${2:-$COMPOSE_DIR}
-  echo   docker cp $(docker-compose ps -q phpfpm|awk '{print $1}'):"/var/www/html/$1" "$COMPOSE_DIR/"
-  docker cp $(docker-compose ps -q phpfpm|awk '{print $1}'):"/var/www/html/$1" "${DESTINATION_DIR}"
+  #  docker cp $(docker-compose ps -q phpfpm|awk '{print $1}'):"/var/www/html/$1" "${DESTINATION_DIR}"
+  # Use tar for copy to workaround symlink bug; -L does not seem to work
+  docker cp $(docker-compose ps -q phpfpm|awk '{print $1}'):"/var/www/html/$1" - | tar -C "${DESTINATION_DIR}" -x
   echo "Completed copying $1 from container to host"
 fi
