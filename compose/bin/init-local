@@ -10,7 +10,7 @@ cd "${COMPOSE_DIR}"
 SOURCE_DIRECTORIES="pub/static/frontend/SomethingDigital vendor/somethingdigital"
 
 # Bring up the phpfpm container so we can copy our source files from it
-docker-compose "$@" up phpfpm -d
+docker-compose "$@" up -d phpfpm
 
 for dir in $SOURCE_DIRECTORIES; do
   destination=${COMPOSE_DIR}/$(dirname "$dir")
