@@ -13,8 +13,9 @@ The `docker-compose` environment will deploy:
 
 
 ## Prerequisites
-To use the `docker-compose` development environment you will need to have Docker Desktop installed.
+To use the `docker-compose` development environment you will need:
 * [Docker Desktop for Mac](https://docs.docker.com/docker-for-mac/)
+* [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) 
 * Something Digital Azure Registry Access
 
 ## Docker Desktop Minimal Configuration

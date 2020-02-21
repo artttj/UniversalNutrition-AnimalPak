@@ -15,6 +15,16 @@ if pgrep mysql; then
   sudo kill -SIGTERM $(pgrep mysql) >> /dev/null 2>&1 || true
 fi
 
+echo "Download dockcmd"
+sudo wget -O /usr/local/bin/dockcmd https://storage.googleapis.com/boxops/dockcmd/releases/linux-amd64/1.2.0/dockcmd
+sudo chmod a+x /usr/local/bin/dockcmd
+
+# populate compose/env/env.php-local
+/usr/local/bin/dockcmd azure get-secrets \
+  --key-vault SDEnvironments \
+  --input-file ./compose/env/env.php-local.template \
+  --output-file ./compose/env/env.php-local
+
 echo "Starting docker containers."
 
 ./compose/bin/start --disable-dev

@@ -16,7 +16,7 @@ download () {
     if [ -z "$AZURE_STORAGE_KEY" ]; then
         found=`az storage account list --query "[?name=='$AZURE_STORAGE_ACCOUNT'].name" -o tsv | wc -l`
         if [ $found -eq 1 ]; then
-          AZURE_STORAGE_KEY=`az storage account keys list --account-name ${AZURE_STORAGE_ACCOUNT} | jq -r '.[0].value'`
+          AZURE_STORAGE_KEY=`az storage account keys list --account-name ${AZURE_STORAGE_ACCOUNT} -otsv --query '[0].value'`
         else
             echo "Either AZURE_STORAGE_KEY / 'az login' not available" && exit 1
         fi
