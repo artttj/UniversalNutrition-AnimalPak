@@ -10,6 +10,8 @@ services:
        - ./composer.json:/var/www/html/composer.json:delegated
        - ./composer.lock:/var/www/html/composer.lock:delegated
        - ./composer-patches:/var/www/html/composer-patches:delegated
+       - ./pub/static/frontend/SomethingDigital/:/var/www/html/pub/static/frontend/SomethingDigital/:delegated
+       - ./vendor/somethingdigital:/var/www/html/vendor/somethingdigital:delegated
       #- ./logs/var/log:/var/www/html/var/log:delegated
       #- ./logs/var/report:/var/www/html/var/report:delegated
 
@@ -26,7 +28,3 @@ services:
     ports:
       - "1025"
       - "8025:8025"
-
-  # Disabling cron by default as it uses higher CPU, enable if needed
-  #cron:
-  #  volumes: *appvolumes

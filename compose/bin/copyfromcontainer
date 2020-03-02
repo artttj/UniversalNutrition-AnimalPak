@@ -1,15 +1,18 @@
 #!/bin/bash
-cd $(dirname $0)
-BIN_DIR=$(pwd)
+set -e
+
+BIN_DIR=$(dirname "$0")
 COMPOSE_DIR=${BIN_DIR}/../..
-REAL_SRC=${COMPOSE_DIR}/..
 
 [ -z "$1" ] && echo "Please specify a directory or file to copy from container (ex. vendor, --all)" && exit
 
 if [ "$1" == "--all" ]; then
-  docker cp $(docker-compose ps -q phpfpm|awk '{print $1}'):/var/www/html/./ $REAL_SRC/
+  docker cp $(docker-compose ps -q phpfpm|awk '{print $1}'):/var/www/html/./ "$COMPOSE_DIR/"
   echo "Completed copying all files from container to host"
 else
-  docker cp $(docker-compose ps -q phpfpm|awk '{print $1}'):/var/www/html/$1 $REAL_SRC/
+  DESTINATION_DIR=${2:-$COMPOSE_DIR}
+  #  docker cp $(docker-compose ps -q phpfpm|awk '{print $1}'):"/var/www/html/$1" "${DESTINATION_DIR}"
+  # Use tar for copy to workaround symlink bug; -L does not seem to work
+  docker cp $(docker-compose ps -q phpfpm|awk '{print $1}'):"/var/www/html/$1" - | tar -C "${DESTINATION_DIR}" -x
   echo "Completed copying $1 from container to host"
 fi

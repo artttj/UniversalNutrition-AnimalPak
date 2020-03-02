@@ -1,8 +1,8 @@
 {
-  "proxy": "https://magento2.test",
+  "proxy": "https://magento.test",
   "rewriteRules": [
     {
-      "match": ".magento2.test",
+      "match": ".magento.test",
       "replace": ""
     }
   ]

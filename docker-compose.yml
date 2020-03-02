@@ -3,7 +3,7 @@ version: "3.6"
 services:
 
   proxy:
-    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/base-images/nginx-php-app:${MAG_IMAGE_TAG:-dev}
+    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/base-images/nginx-php-app
     restart: unless-stopped
     depends_on:
       - varnish
@@ -22,7 +22,7 @@ services:
       - ./compose/env/default.vcl:/etc/varnish/default.vcl
 
   app:
-    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/base-images/nginx-php-app:${MAG_IMAGE_TAG:-dev}
+    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/base-images/nginx-php-app
     restart: unless-stopped
     depends_on:
       - phpfpm
@@ -33,11 +33,11 @@ services:
       - ~/.composer:/var/www/.composer:delegated
       - appdata:/var/www/html
       - ./compose/env/env.php-local:/var/www/html/app/etc/env.php:delegated
-      - ./nginx.conf.sample:/var/www/html/nginx.conf:delegated
+      - ./compose/env/nginx-php-app.conf:/var/www/html/nginx.conf:delegated
       - sockdata:/sock
 
   phpfpm:
-    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/accelerator:${IMAGE_TAG:-7.2}
+    image: ${IMAGE_REGISTRY:-sdmagentodev.azurecr.io}/${IMAGE_NAME:-accelerator}:${IMAGE_TAG:-develop}
     restart: unless-stopped
     volumes: *appvolumes
     depends_on:
@@ -58,6 +58,7 @@ services:
 
   redis:
     image: redis:5.0
+    restart: unless-stopped
 
   elasticsearch:
     image: elasticsearch:6.8.6
@@ -78,16 +79,6 @@ services:
       RABBITMQ_DEFAULT_PASS: password
       RABBITMQ_DEFAULT_VHOST: /magento
 
-  # Disabling cron by default, enable if needed
-  #cron:
-  #  image: magento-php-fpm-7.2:latest
-  #  restart: unless-stopped
-  #  user: root
-  #  command: /usr/local/bin/cronstart
-  #  tty: true
-  #  links:
-  #    - db
-  #  volumes: *appvolumes
 
 volumes:
   appdata:

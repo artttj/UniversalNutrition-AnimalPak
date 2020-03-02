@@ -2,5 +2,5 @@
 cd $(dirname $0)
 BIN_DIR=$(pwd)
 COMPOSE_DIR=${BIN_DIR}/../..
-cd ${COMPOSE_DIR}
+cd "${COMPOSE_DIR}"
 docker-compose exec redis "$@"

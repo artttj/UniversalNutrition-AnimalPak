@@ -1,5 +1,8 @@
 ### SD Ignored Files
 auth.json
+*.sql
+*.sql.gz
+env.php-local
 
 ## Unused M2 files
 /CHANGELOG.md
@@ -21,7 +24,8 @@ auth.json
 /files
 /.docker-sync
 /provision.retry
-
+# Vim
+**.swp
 
 ### Magento OOB .gitignore
 ### Do not edit anything below this line
