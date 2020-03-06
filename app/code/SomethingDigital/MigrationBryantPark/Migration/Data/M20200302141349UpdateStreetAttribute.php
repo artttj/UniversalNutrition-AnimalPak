@@ -22,8 +22,7 @@ class M20200302141349UpdateStreetAttribute implements MigrationInterface
     public function __construct(
         EavSetupFactory $eavSetupFactory,
         ModuleDataSetupInterface $moduleDataSetup
-        )
-    {
+    ) {
         $this->eavSetupFactory = $eavSetupFactory;
         $this->moduleDataSetup = $moduleDataSetup;
     }
