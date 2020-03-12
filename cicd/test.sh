@@ -6,6 +6,20 @@ set -e
 
 pushd "$(dirname $0)/.."
 
+# Login to Azure
+if [[ -z $AZURE_CLIENT_ID || -z $AZURE_CLIENT_SECRET || -z $AZURE_TENANT_ID ]]; then
+    [ -z $AZURE_CLIENT_ID ] && echo "Missing AZURE_CLIENT_ID"
+    [ -z $AZURE_CLIENT_SECRET ] && echo "Missing AZURE_CLIENT_SECRET"
+    [ -z $AZURE_TENANT_ID ] && echo "Missing AZURE_TENANT_ID"
+    exit 1
+fi
+
+az login \
+  --service-principal \
+  --username $AZURE_CLIENT_ID \
+  --password $AZURE_CLIENT_SECRET \
+  --tenant $AZURE_TENANT_ID
+
 # Set required host header if not already set
 grep "magento.test" /etc/hosts > /dev/null || \
   echo "127.0.0.1 ::1 magento.test" | sudo tee -a /etc/hosts
@@ -15,15 +29,9 @@ if pgrep mysql; then
   sudo kill -SIGTERM $(pgrep mysql) >> /dev/null 2>&1 || true
 fi
 
-echo "Download dockcmd"
-sudo wget -O /usr/local/bin/dockcmd https://storage.googleapis.com/boxops/dockcmd/releases/linux-amd64/1.2.0/dockcmd
-sudo chmod a+x /usr/local/bin/dockcmd
-
 # populate compose/env/env.php-local
-/usr/local/bin/dockcmd azure get-secrets \
-  --key-vault SDEnvironments \
-  --input-file ./compose/env/env.php-local.template \
-  --output-file ./compose/env/env.php-local
+CRYPT_KEY=$(az keyvault secret show --name "$IMAGE_NAME" --vault-name "SDEnvironments" --query 'value' | sed -e 's/".*key\\":\\"\(.*\)\\".*/\1/')
+sed -e "s/crypt_key/$CRYPT_KEY/g" ./compose/env/env.php-local.template > ./compose/env/env.php-local
 
 echo "Starting docker containers."
 

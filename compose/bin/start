@@ -7,6 +7,8 @@ COMPOSE_DIR=${BIN_DIR}/../..
 CICD_DIR=${BIN_DIR}/../../cicd
 cd "${COMPOSE_DIR}/"
 
+. "$CICD_DIR/vars.sh"
+
 export COMPOSE_HTTP_TIMEOUT=900
 
 if ! (ls compose/files/db/*.sql >/dev/null 2>&1 || ls compose/files/db/*.gz >/dev/null 2>&1); then
@@ -41,10 +43,8 @@ do
 done
 
 if [[ ${INITIALIZE_LOCAL} = "yes" ]]; then
-  dockcmd azure get-secrets \
-    --key-vault SDEnvironments \
-    --input-file ./compose/env/env.php-local.template \
-    --output-file ./compose/env/env.php-local
+   CRYPT_KEY=$(az keyvault secret show --name "$IMAGE_NAME" --vault-name "SDEnvironments" --query 'value' | sed -e 's/".*key\\":\\"\(.*\)\\".*/\1/')
+  sed -e "s/crypt_key/$CRYPT_KEY/g" ./compose/env/env.php-local.template > ./compose/env/env.php-local
   "${BIN_DIR}/init-local" ${COMPOSE_ARGS}
 fi
 
@@ -55,6 +55,5 @@ fi
 if [[ ${COMPOSE_CRON} = "yes" ]]; then
   COMPOSE_ARGS="${COMPOSE_ARGS} -f docker-compose-cron.yml"
 fi
-
 
 docker-compose ${COMPOSE_ARGS} up -d
