@@ -56,5 +56,4 @@ if [[ ${COMPOSE_CRON} = "yes" ]]; then
   COMPOSE_ARGS="${COMPOSE_ARGS} -f docker-compose-cron.yml"
 fi
 
-
 docker-compose ${COMPOSE_ARGS} up -d
