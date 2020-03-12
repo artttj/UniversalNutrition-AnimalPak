@@ -1,7 +1,9 @@
 #!/bin/bash
 
 set -e
-CICD_DIR=$(dirname "$0")
+if [[ -z $CICD_DIR ]]; then
+    CICD_DIR=$(dirname "$0")
+fi
 . "${CICD_DIR}/util.sh"
 export AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT:-"sasdmagentodev"}
 
