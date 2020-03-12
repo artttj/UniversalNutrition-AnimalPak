@@ -1,5 +1,3 @@
-ARG CLIENT_THEME="SomethingDigital/bryantpark"
-ARG MAGENTO_THEME="Magento/backend"
 ARG MAG_BASE_IMAGE="sdmagentodev.azurecr.io/base-images/magento-php-fpm:7.2-develop"
 
 FROM ${MAG_BASE_IMAGE} as build
@@ -19,8 +17,8 @@ RUN composer install --no-interaction && rm -rf /var/www/.composer
 
 
 FROM ${MAG_BASE_IMAGE}
-ARG CLIENT_THEME
-ARG MAGENTO_THEME
+ARG CLIENT_THEME="SomethingDigital/bryantpark"
+ARG MAGENTO_THEME="Magento/backend"
 
 COPY --chown=app:app . /var/www/html
 
