@@ -32,7 +32,7 @@ services:
       - ~/.ssh:/var/www/.ssh:delegated
       - ~/.composer:/var/www/.composer:delegated
       - appdata:/var/www/html
-      - ./compose/env/env.php-local:/var/www/html/app/etc/env.php:delegated
+      - ./app/etc/env.php:/var/www/html/app/etc/env.php:delegated
       - ./compose/env/nginx-php-app.conf:/var/www/html/nginx.conf:delegated
       - sockdata:/sock
 
