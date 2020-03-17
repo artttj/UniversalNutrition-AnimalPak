@@ -2,7 +2,6 @@
 
 set -e
 
-if [ ${#@} -ne 0 ] && [ "${@#"-h"}" = "" ]; then
 USAGE="Magento Cloud Docker
 
 \033[33mArguments:\033[0m
@@ -13,15 +12,17 @@ USAGE="Magento Cloud Docker
   stop              stop containers
   start             start containers
   restart           restart containers
-  ece-build         build application
-  ece-deploy        deploy application
-  ece-redeploy      re-build and re-deploy application
+  ece-build         run build hooks
+  ece-deploy        run deploy hooks
+  ece-post-deploy   run post-deploy hooks
+  ece-redeploy      run build, deploy, and post-deploy hooks
 
 \033[33mOptions:\033[0m
   -h            show this help text\n"
 
-  printf "$USAGE"
-  exit 0;
+if [ ${#@} -ne 0 ] && [ "${@#"-h"}" = "" ]; then
+    printf "$USAGE"
+    exit 0;
 fi;
 
 case "$1" in
@@ -36,7 +37,7 @@ case "$1" in
         docker-compose down --volumes
         ;;
     bash)
-        docker-compose run deploy bash
+        docker-compose run --rm deploy bash
         ;;
     stop)
         docker-compose stop
@@ -48,16 +49,20 @@ case "$1" in
         docker-compose restart
         ;;
     ece-build)
-        docker-compose run build cloud-build
+        docker-compose run --rm build cloud-build
         ;;
     ece-deploy)
-        docker-compose run deploy cloud-deploy
+        docker-compose run --rm deploy cloud-deploy
+        ;;
+    ece-post-deploy)
+        docker-compose run --rm deploy cloud-post-deploy
         ;;
     ece-redeploy)
-        docker-compose run build cloud-build
-        docker-compose run deploy cloud-deploy
+        docker-compose run --rm build cloud-build
+        docker-compose run --rm deploy cloud-deploy
+        docker-compose run --rm deploy cloud-post-deploy
         ;;
     *)
-        printf "\033[31m Wrong command passed\033[0m\n"
-        exit 1
+        printf "$USAGE"
+        exit 0;
 esac
