@@ -15,6 +15,11 @@ if ! (ls compose/files/db/*.sql >/dev/null 2>&1 || ls compose/files/db/*.gz >/de
   "${CICD_DIR}/get-db.sh"
 fi
 
+# If the app container is spun up before we create app/etc/env.php, docker will create a directory in its place.
+if [ -d app/etc/env.php ]; then
+  rmdir app/etc/env.php;
+fi
+
 COMPOSE_DEV="yes"
 COMPOSE_CRON="no"
 INTIALIZE_LOCAL="no"
