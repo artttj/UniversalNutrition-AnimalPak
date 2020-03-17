@@ -6,7 +6,6 @@ pr:
     include:
       - master
       - develop
-      - feature/update-image-build
 
 trigger:
   batch: true
@@ -14,7 +13,6 @@ trigger:
     include:
       - refs/heads/master
       - refs/heads/develop
-      - refs/heads/feature/update-image-build
       - refs/tags/*
 
 pool:
