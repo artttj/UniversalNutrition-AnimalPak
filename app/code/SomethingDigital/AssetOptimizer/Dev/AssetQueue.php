@@ -4,6 +4,7 @@ namespace SomethingDigital\AssetOptimizer\Dev;
 
 use Magento\Framework\App\View\Asset\Publisher;
 use Magento\Framework\Filesystem\Directory\ReadFactory as DirReadFactory;
+use Magento\Framework\View\Asset\ContentProcessorException;
 use Magento\Framework\View\Asset\File\NotFoundException;
 use Magento\Framework\View\Asset\Repository as AssetRepository;
 
@@ -71,6 +72,8 @@ class AssetQueue
                 $this->publisher->publish($asset);
             } catch (NotFoundException $e) {
                 // Ignore failed generations because the file shouldn't exist.
+            } catch (ContentProcessorException $e) {
+                // Ignore "Compilation from source: LESS file is empty" error.
             }
         }
     }
