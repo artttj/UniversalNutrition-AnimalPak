@@ -15,6 +15,11 @@ if ! (ls compose/files/db/*.sql >/dev/null 2>&1 || ls compose/files/db/*.gz >/de
   "${CICD_DIR}/get-db.sh"
 fi
 
+# If the app container is spun up before we create app/etc/env.php, docker will create a directory in its place.
+if [ -d app/etc/env.php ]; then
+  rmdir app/etc/env.php;
+fi
+
 COMPOSE_DEV="yes"
 COMPOSE_CRON="no"
 INTIALIZE_LOCAL="no"
@@ -43,13 +48,17 @@ do
 done
 
 if [[ ${INITIALIZE_LOCAL} = "yes" ]]; then
-   CRYPT_KEY=$(az keyvault secret show --name "$IMAGE_NAME" --vault-name "SDEnvironments" --query 'value' | sed -e 's/".*key\\":\\"\(.*\)\\".*/\1/')
-  sed -e "s/crypt_key/$CRYPT_KEY/g" ./compose/env/env.php-local.template > ./compose/env/env.php-local
   "${BIN_DIR}/init-local" ${COMPOSE_ARGS}
 fi
 
 if [[ ${COMPOSE_DEV} = "yes" ]]; then
-   COMPOSE_ARGS="${COMPOSE_ARGS} -f docker-compose-dev.yml"
+  COMPOSE_ARGS="${COMPOSE_ARGS} -f docker-compose-dev.yml"
+  if [ ! -f ./app/etc/env.php ]; then
+    echo "Missing app/etc/env.php."
+    echo "Creating app/etc/env.php."
+    CRYPT_KEY=$(az keyvault secret show --name "$IMAGE_NAME" --vault-name "SDEnvironments" --query 'value' | sed -e 's/".*key\\":\\"\(.*\)\\".*/\1/')
+    sed -e "s/crypt_key/$CRYPT_KEY/g" ./compose/env/env.php-local.template > ./app/etc/env.php
+  fi
 fi
 
 if [[ ${COMPOSE_CRON} = "yes" ]]; then

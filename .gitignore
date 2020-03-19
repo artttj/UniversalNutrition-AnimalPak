@@ -2,7 +2,6 @@
 auth.json
 *.sql
 *.sql.gz
-env.php-local
 
 ## Unused M2 files
 /CHANGELOG.md
