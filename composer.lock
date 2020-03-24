@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2cde48623d5801b2f5a1dc47b2cfd4cb",
+    "content-hash": "e113a54517ab50583b5dee2ee8020c3b",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -16655,11 +16655,11 @@
         },
         {
             "name": "somethingdigital/magento2-theme-bryantpark",
-            "version": "4.2.10",
+            "version": "4.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "fe264e83817b6a9f236ee7aed88de37a37f62359"
+                "reference": "68d3cc7a8ad57cf22dac2d5d695265c927a65077"
             },
             "require": {
                 "magento/magento-composer-installer": "*",
@@ -16675,7 +16675,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2020-03-02T22:41:44+00:00"
+            "time": "2020-03-24T20:25:47+00:00"
         },
         {
             "name": "somethingdigital/module-admin-notify",
@@ -22055,12 +22055,12 @@
             "version": "1.7.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-webdriver/php-webdriver.git",
+                "url": "https://github.com/php-webdriver/php-webdriver-archive.git",
                 "reference": "e43de70f3c7166169d0f14a374505392734160e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-webdriver/php-webdriver/zipball/e43de70f3c7166169d0f14a374505392734160e5",
+                "url": "https://api.github.com/repos/php-webdriver/php-webdriver-archive/zipball/e43de70f3c7166169d0f14a374505392734160e5",
                 "reference": "e43de70f3c7166169d0f14a374505392734160e5",
                 "shasum": ""
             },
