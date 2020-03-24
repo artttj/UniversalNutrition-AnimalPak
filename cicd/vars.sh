@@ -7,6 +7,7 @@ fi
 . "${CICD_DIR}/util.sh"
 export AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT:-"sasdmagentodev"}
 
+export BASE_DOMAIN=${BASE_DOMAIN:-"magento.test"}
 export IMAGE_REGISTRY=${IMAGE_REGISTRY:-"sdmagentodev.azurecr.io"}
 export IMAGE_NAME=${IMAGE_NAME:-accelerator}
 export IMAGE_TAG=${IMAGE_TAG:-${BUILD_SOURCEBRANCHNAME:-develop}}

@@ -21,8 +21,8 @@ az login \
   --tenant $AZURE_TENANT_ID
 
 # Set required host header if not already set
-grep "magento.test" /etc/hosts > /dev/null || \
-  echo "127.0.0.1 ::1 magento.test" | sudo tee -a /etc/hosts
+grep "$BASE_DOMAIN" /etc/hosts > /dev/null || \
+  echo "127.0.0.1 ::1 $BASE_DOMAIN" | sudo tee -a /etc/hosts
 
 echo "Stop any running mysql instances"
 if pgrep mysql; then
@@ -44,9 +44,9 @@ echo "Running setup:upgrade and tests"
 export COMPOSE_INTERACTIVE_NO_CLI=1
 if [ $USER == "vsts" ]; then sudo chmod -R a+rw ./app/etc; fi
 ./compose/bin/magento setup:upgrade
-STATUS=`curl -IkLs -m 300 https://magento.test | grep  HTTP/1.1 | tail -1 | cut -d$' ' -f2`
+STATUS=`curl -IkLs -m 300 https://$BASE_DOMAIN | grep  HTTP/1.1 | tail -1 | cut -d$' ' -f2`
 echo "Test returned $STATUS status code"
-[  $STATUS -ne "200" ] && curl -kLs -m 300 https://magento.test
+[  $STATUS -ne "200" ] && curl -kLs -m 300 https://$BASE_DOMAIN
 
 echo "Stopping docker containers"
 ./compose/bin/stop
