@@ -31,7 +31,10 @@ fi
 
 # populate compose/env/env.php-local
 CRYPT_KEY=$(az keyvault secret show --name "$IMAGE_NAME" --vault-name "SDEnvironments" --query 'value' | sed -e 's/".*key\\":\\"\(.*\)\\".*/\1/')
-sed -e "s/crypt_key/$CRYPT_KEY/g" ./compose/env/env.php-local.template > ./app/etc/env.php
+sed -e "
+  s/crypt_key/$CRYPT_KEY/;
+  s/base_domain/$BASE_DOMAIN/;
+  " ./compose/env/env.php-local.template > ./app/etc/env.php
 
 echo "Starting docker containers."
 
