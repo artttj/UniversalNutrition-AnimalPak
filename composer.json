@@ -51,7 +51,7 @@
         "snowdog/frontools": "1.4.6",
         "somethingdigital/invalidate-admin-passwords": "^0.1.0",
         "somethingdigital/magento2-migration": "dev-nobluefoot",
-        "somethingdigital/magento2-theme-bryantpark": "4.2.11",
+        "somethingdigital/magento2-theme-bryantpark": "4.2.12",
         "somethingdigital/module-admin-notify": "^1.0",
         "somethingdigital/module-cms-meta-image": "^1.0"
     },
