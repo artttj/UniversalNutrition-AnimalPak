@@ -39,7 +39,8 @@ RUN yarn && \
     cd /var/www/html
 
 RUN php /var/www/html/bin/magento setup:di:compile && \
-    php bin/magento setup:static-content:deploy -f
+    php bin/magento setup:static-content:deploy -f --exclude-theme \
+    Magento/luma
 
 RUN php /var/www/html/bin/magento sd:dev:static ${CLIENT_THEME} && \
     php /var/www/html/bin/magento sd:dev:static --area=adminhtml ${MAGENTO_THEME}
