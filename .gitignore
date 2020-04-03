@@ -19,7 +19,7 @@ auth.json
 # Hologram
 /pub/styleguide
 # Vim
-**.swp
+*.swp
 
 ### Magento OOB .gitignore
 ### Do not edit anything below this line
