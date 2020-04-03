@@ -1,8 +1,10 @@
 ### SD Ignored Files
+
+# Storing the auth.json in Azure now
 auth.json
+# Local database dumps
 *.sql
 *.sql.gz
-
 ## Unused M2 files
 /CHANGELOG.md
 /CONTRIBUTING.md
