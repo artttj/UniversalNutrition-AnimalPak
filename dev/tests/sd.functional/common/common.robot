@@ -17,7 +17,7 @@ Open The Browser
 
 Open Browse Page
     [Documentation]  To open the browser in regular view
-    Open Browser  ${url}  ${browser}
+    Open Browser  ${url}  ${browser} options=add_argument("--ignore-certificate-errors")
 
 Close The Browser
     [Documentation]  To close the broswer
@@ -31,6 +31,7 @@ Run Tests on Headless Mode
     Call Method  ${chrome_options}  add_argument  --no-sandbox
     Call Method  ${chrome_options}  add_argument  --headless
     Call Method  ${chrome_options}  add_argument  --disable-dev-shm-usage
+    Call Method  ${chrome_options}  add_argument  --ignore-certificate-errors
     Create Webdriver  Chrome  chrome_options=${chrome_options}
     Set Window Size  1920  1080
     Go To  ${url}
