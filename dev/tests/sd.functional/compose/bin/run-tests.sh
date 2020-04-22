@@ -1,0 +1,1 @@
+docker-compose run robot robot --name jontest --outputdir /sd.functional/results --variable site:bp_staging --variable HEADLESS:headless sd.functional/suites/
