@@ -24,6 +24,7 @@ COMPOSE_DEV="yes"
 COMPOSE_CRON="no"
 INTIALIZE_LOCAL="no"
 
+
 COMPOSE_ARGS="-f docker-compose.yml"
 for arg in "$@"
 do
@@ -47,21 +48,23 @@ do
     esac
 done
 
+if [ ! -f ./app/etc/env.php ]; then
+  echo "Missing app/etc/env.php."
+  echo "Creating app/etc/env.php."
+  CRYPT_KEY=$(az keyvault secret show --name "$IMAGE_NAME" --vault-name "SDEnvironments" --query 'value' | sed -e 's/".*key\\":\\"\(.*\)\\".*/\1/')
+  sed -e "
+    s/crypt_key/$CRYPT_KEY/g;
+    s/base_domain/$BASE_DOMAIN/g;
+    " ./compose/env/env.php-local.template > ./app/etc/env.php
+fi
+
+
 if [[ ${INITIALIZE_LOCAL} = "yes" ]]; then
   "${BIN_DIR}/init-local" ${COMPOSE_ARGS}
 fi
 
 if [[ ${COMPOSE_DEV} = "yes" ]]; then
   COMPOSE_ARGS="${COMPOSE_ARGS} -f docker-compose-dev.yml"
-  if [ ! -f ./app/etc/env.php ]; then
-    echo "Missing app/etc/env.php."
-    echo "Creating app/etc/env.php."
-    CRYPT_KEY=$(az keyvault secret show --name "$IMAGE_NAME" --vault-name "SDEnvironments" --query 'value' | sed -e 's/".*key\\":\\"\(.*\)\\".*/\1/')
-    sed -e "
-      s/crypt_key/$CRYPT_KEY/g;
-      s/base_domain/$BASE_DOMAIN/g;
-      " ./compose/env/env.php-local.template > ./app/etc/env.php
-  fi
 fi
 
 if [[ ${COMPOSE_CRON} = "yes" ]]; then

@@ -14,7 +14,7 @@ export IMAGE_TAG=${IMAGE_TAG:-${BUILD_SOURCEBRANCHNAME:-develop}}
 export MAG_BASE_VERSION=${MAG_BASE_VERSION:-7.2}
 export MAG_BASE_IMAGE=${MAG_BASE_IMAGE:-${IMAGE_REGISTRY}/base-images/magento-php-fpm:${MAG_BASE_VERSION}}
 
-export INIT_DB_PATH=${INIT_DB_PATH:-"accelerator/2020-01-21-accelerator-${DB_BRANCH:-develop}.sql.gz"}
+export INIT_DB_PATH=${INIT_DB_PATH:-"accelerator/2020-04-22-accelerator-${DB_BRANCH:-develop}.sql.gz"}
 export TEST_WAIT_SECS=${TEST_WAIT_SECS:-30}
 
 echo "Using Variables:"
