@@ -350,7 +350,6 @@ return [
         'SomethingDigital_PageBuilderCustomizations' => 1,
         'SomethingDigital_ProductCompareDisabler' => 1,
         'SomethingDigital_SidebarMinicart' => 1,
-        'SomethingDigital_UpgradeHelper' => 1,
         'SomethingDigital_VirtualThemes' => 1,
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1,
