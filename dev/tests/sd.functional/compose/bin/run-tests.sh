@@ -1,1 +1,1 @@
-docker-compose run -f dev/tests/sd.functional/docker-compose.yaml robot robot --name jontest --outputdir /sd.functional/results --variable base_url:"https://magento.test" --variable HEADLESS:headless --variable site:cli $@ sd.functional/suites/ 
+docker-compose -f dev/tests/sd.functional/docker-compose.yaml run robot robot --name jontest --outputdir /sd.functional/results --variable base_url:"https://magento.test" --variable HEADLESS:headless --variable site:cli $@ sd.functional/suites/ 
