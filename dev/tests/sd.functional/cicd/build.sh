@@ -1,1 +1,1 @@
-docker build -qt robot-test:latest ./
+docker build -qt robot-test:latest dev/tests/sd.functional/
