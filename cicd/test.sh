@@ -52,10 +52,14 @@ echo "Running Index"
 ./compose/bin/magento index:reindex
 
 echo "Provisioning Robot Tester"
-./dev/tests/sd.functional/cicd/build.sh
+pushd dev/tests/sd.functional/
+./cicd/build.sh
+popd
 
 echo "Running tests"
-./dev/tests/sd.functional/compose/bin/run-tests.sh
+pushd dev/tests/sd.functional/
+./compose/bin/run-tests.sh
+popd 
 
 echo "Curl Test"
 STATUS=`curl -IkLs -m 300 https://$BASE_DOMAIN | grep  HTTP/1.1 | tail -1 | cut -d$' ' -f2`
