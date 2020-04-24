@@ -52,12 +52,12 @@ echo "Running Index"
 ./compose/bin/magento index:reindex
 
 echo "Provisioning Robot Tester"
-pushd dev/tests/sd.functional/
+pushd "$(dirname $0)/dev/tests/sd.functional/"
 ./cicd/build.sh
 popd
 
 echo "Running tests"
-pushd dev/tests/sd.functional/
+pushd "$(dirname $0)/dev/tests/sd.functional/"
 ./compose/bin/run-tests.sh
 popd 
 
