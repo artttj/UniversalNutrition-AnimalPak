@@ -8,7 +8,7 @@ Suite Setup       Set Variables For Site
 
 
 *** Test Cases ***
-Search Results Page- Display
+Search Bar- Display
     [Tags]  search_results
-    [Documentation]  To verify the display and functionality of the search results page
-    Check Search Page Functionality
+    [Documentation]  To verify the display of the Search Bar on Homepage
+    Check Search Bar display
