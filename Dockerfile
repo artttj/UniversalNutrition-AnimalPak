@@ -1,6 +1,6 @@
-ARG MAG_BASE_IMAGE="sdmagentodev.azurecr.io/base-images/magento-php-fpm:7.2-develop"
+ARG MAGE_BASE_IMAGE="sdmagentodev.azurecr.io/base-images/magento-php-fpm:7.2-develop"
 
-FROM ${MAG_BASE_IMAGE} as build
+FROM ${MAGE_BASE_IMAGE} as build
 ARG SSH_PRIVATE_KEY
 
 RUN mkdir -p /var/www/.ssh && \
@@ -16,7 +16,7 @@ COPY composer-patches composer-patches
 RUN composer install --no-interaction && rm -rf /var/www/.composer
 
 
-FROM ${MAG_BASE_IMAGE}
+FROM ${MAGE_BASE_IMAGE}
 ARG CLIENT_THEME="SomethingDigital/bryantpark"
 ARG MAGENTO_THEME="Magento/backend"
 
