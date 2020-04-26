@@ -20,6 +20,19 @@ if [[ ! "${db_filename}" =~ ^20[0-9]{2}-[01][0-9]-[0-3][0-9]-[a-z\-]*-[a-z\-]*.s
     exit 1
 fi
 
+exists=$(
+    az storage blob list \
+    --container-name $IMAGE_NAME \
+    --query "[?name == '${db_filename}'].name" \
+    --output tsv |
+    wc -l
+)
+
+if [ $exists -gt 0 ]; then
+    log_error "Error: Filename $db_filename exists on Azure Storage"
+    exit 1
+fi
+
 az storage blob upload \
     --container-name $IMAGE_NAME \
     --file $db_path \
