@@ -1,12 +1,15 @@
 #!/bin/bash
 
 set -e
+
 if [[ -z $CICD_DIR ]]; then
     CICD_DIR=$(dirname "$0")
 fi
-. "${CICD_DIR}/util.sh"
-export AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT:-"sasdmagentodev"}
 
+. "${CICD_DIR}/util.sh"
+. "${CICD_DIR}/logger.sh"
+
+export AZURE_STORAGE_ACCOUNT=${AZURE_STORAGE_ACCOUNT:-"sasdmagentodev"}
 export BASE_DOMAIN=${BASE_DOMAIN:-"magento.test"}
 export IMAGE_REGISTRY=${IMAGE_REGISTRY:-"sdmagentodev.azurecr.io"}
 export IMAGE_NAME=${IMAGE_NAME:-accelerator}
@@ -18,7 +21,7 @@ export INIT_DB_PATH=${INIT_DB_PATH:-"accelerator/2020-04-22-accelerator-${DB_BRA
 export TEST_WAIT_SECS=${TEST_WAIT_SECS:-30}
 
 echo "Using Variables:"
-echo -e "  \033[0;35mBASE_DOMAIN: ${BASE_DOMAIN}\033[0m"
+log_highlight "  BASE_DOMAIN: ${BASE_DOMAIN}"
 echo "  IMAGE_REGISTRY: ${IMAGE_REGISTRY}"
 echo "  IMAGE_NAME: ${IMAGE_NAME}"
 echo "  IMAGE_TAG: ${IMAGE_TAG}"
