@@ -18,6 +18,7 @@ export INIT_DB_PATH=${INIT_DB_PATH:-"accelerator/2020-04-22-accelerator-${DB_BRA
 export TEST_WAIT_SECS=${TEST_WAIT_SECS:-30}
 
 echo "Using Variables:"
+echo "  BASE_DOMAIN: ${BASE_DOMAIN}"
 echo "  IMAGE_REGISTRY: ${IMAGE_REGISTRY}"
 echo "  IMAGE_NAME: ${IMAGE_NAME}"
 echo "  IMAGE_TAG: ${IMAGE_TAG}"
