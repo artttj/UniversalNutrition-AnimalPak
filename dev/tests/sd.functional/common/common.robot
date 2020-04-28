@@ -17,7 +17,7 @@ Open The Browser
 
 Open Browse Page
     [Documentation]  To open the browser in regular view
-    Open Browser  ${url}  ${browser} options=add_argument("--ignore-certificate-errors")
+    Open Browser  ${url}  ${browser}  options=add_argument("--ignore-certificate-errors")
 
 Close The Browser
     [Documentation]  To close the broswer
