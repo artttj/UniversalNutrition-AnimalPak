@@ -1,8 +1,8 @@
 commands:
   N98\Magento\Command\Database\DumpCommand:
     table-groups:
-      - id: "sd-dev"
-        description: "Tables to strip for local development"
+      - id: "sd-dev-base"
+        description: "Base tables removed across all projects."
         tables: >-
           admin_analytics_usage_version_log
           admin_passwords
@@ -198,3 +198,7 @@ commands:
           vertex_sales_order_item_invoice_text_code
           vertex_sales_order_item_tax_code
           vertex_sales_order_item_vertex_tax_code
+      - id: "sd-dev"
+        description: "Tables to strip for local development. Includes the sd-dev-base tables and project specific tables."
+        tables: >-
+          @sd-dev-base
