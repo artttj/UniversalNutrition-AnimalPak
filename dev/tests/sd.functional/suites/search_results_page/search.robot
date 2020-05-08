@@ -2,13 +2,13 @@
 Documentation     Test Search Test Cases
 Resource          ../../common/common.robot
 Resource          ../../resources/search_keywords.robot
-Test Setup        Open Browser  ${url}  ${browser}
-Test Teardown     Close All Browsers
+Test Setup        Open The Browser
+Test Teardown     Close The Browser
 Suite Setup       Set Variables For Site
 
 
 *** Test Cases ***
-Search Results Page- Display
+Search Bar- Display
     [Tags]  search_results
-    [Documentation]  To verify the display and functionality of the search results page
-    Check Search Page Functionality
+    [Documentation]  To verify the display of the Search Bar on Homepage
+    Check Search Bar display

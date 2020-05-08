@@ -47,6 +47,21 @@ echo "Running setup:upgrade and tests"
 export COMPOSE_INTERACTIVE_NO_CLI=1
 if [ $USER == "vsts" ]; then sudo chmod -R a+rw ./app/etc; fi
 ./compose/bin/magento setup:upgrade
+
+echo "Running Index"
+./compose/bin/magento index:reindex
+
+echo "Provisioning Robot Tester"
+pushd dev/tests/sd.functional/
+./cicd/build.sh
+popd
+
+echo "Running tests"
+pushd dev/tests/sd.functional/
+./compose/bin/run-tests.sh
+popd 
+
+echo "Curl Test"
 STATUS=`curl -IkLs -m 300 https://$BASE_DOMAIN | grep  HTTP/1.1 | tail -1 | cut -d$' ' -f2`
 echo "Test returned $STATUS status code"
 [  $STATUS -ne "200" ] && curl -kLs -m 300 https://$BASE_DOMAIN

@@ -1,0 +1,28 @@
+version: "3.6"
+services:
+  robot:
+    image: robot-test:latest
+    networks: 
+        front: 
+            ipv4_address: 192.168.0.2
+    volumes:
+      - ./common:/sd.functional/common
+      - ./custom_libraries:/sd.functional/custom_libraries
+      - ./resources:/sd.functional/resources
+      - ./suites:/sd.functional/suites
+      - ./results:/sd.functional/results
+      - ./datafile.csv.sample:/sd.functional/datafile.csv
+    extra_hosts:
+      - "magento.test:192.168.0.1"
+
+networks:
+  front:
+    # use the bridge driver, but enable IPv6
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24
+  back:
+    # use a custom driver, with no options
+    driver: custom-driver-1

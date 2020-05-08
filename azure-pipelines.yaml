@@ -70,6 +70,14 @@ stages:
         AZURE_CLIENT_SECRET: $(AZURE_CLIENT_SECRET)
         AZURE_TENANT_ID: $(AZURE_TENANT_ID)
 
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'XUnit'
+        testResultsFiles: '**/output.xml'
+        searchFolder: '$(System.DefaultWorkingDirectory)/dev/tests/sd.functional/results'
+        failTaskOnFailedTests: true
+        testRunTitle: 'Functional Tests'
+
     - bash: ./cicd/push.sh
       displayName: "Push Docker images"
       condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
