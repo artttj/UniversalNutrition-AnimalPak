@@ -40,8 +40,8 @@ ${AZURE_STORAGE_ACCOUNT:-"sasdmagentodev"}
 ${IMAGE_REGISTRY:-"sdmagentodev.azurecr.io"}
 ${IMAGE_NAME:-accelerator}
 ${IMAGE_TAG:-${BUILD_SOURCEBRANCHNAME:-develop}}
-${MAG_BASE_VERSION:-7.2}
-${MAG_BASE_IMAGE:-${IMAGE_REGISTRY}/base-images/magento-php-fpm:${MAG_BASE_VERSION}}
+${MAGE_BASE_VERSION:-7.2}
+${MAGE_BASE_IMAGE:-${IMAGE_REGISTRY}/base-images/magento-php-fpm:${MAGE_BASE_VERSION}}
 ${INIT_DB_PATH:-"accelerator/2020-01-21-accelerator-${DB_BRANCH:-develop}.sql.gz"}
 ${TEST_WAIT_SECS:-30}
 ```

@@ -7,18 +7,20 @@ set -e
 pushd "$(dirname $0)/.."
 
 # Login to Azure
-if [[ -z $AZURE_CLIENT_ID || -z $AZURE_CLIENT_SECRET || -z $AZURE_TENANT_ID ]]; then
-    [ -z $AZURE_CLIENT_ID ] && echo "Missing AZURE_CLIENT_ID"
-    [ -z $AZURE_CLIENT_SECRET ] && echo "Missing AZURE_CLIENT_SECRET"
-    [ -z $AZURE_TENANT_ID ] && echo "Missing AZURE_TENANT_ID"
-    exit 1
-fi
+if [ $USER == "vsts" ]; then
+    if [[ -z $AZURE_CLIENT_ID || -z $AZURE_CLIENT_SECRET || -z $AZURE_TENANT_ID ]]; then
+        [ -z $AZURE_CLIENT_ID ] && echo "Missing AZURE_CLIENT_ID"
+        [ -z $AZURE_CLIENT_SECRET ] && echo "Missing AZURE_CLIENT_SECRET"
+        [ -z $AZURE_TENANT_ID ] && echo "Missing AZURE_TENANT_ID"
+        exit 1
+    fi
 
-az login \
-  --service-principal \
-  --username $AZURE_CLIENT_ID \
-  --password $AZURE_CLIENT_SECRET \
-  --tenant $AZURE_TENANT_ID
+    az login \
+      --service-principal \
+      --username $AZURE_CLIENT_ID \
+      --password $AZURE_CLIENT_SECRET \
+      --tenant $AZURE_TENANT_ID
+fi
 
 # Set required host header if not already set
 grep "$BASE_DOMAIN" /etc/hosts > /dev/null || \
