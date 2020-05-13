@@ -75,7 +75,6 @@ commands:
           gift_message
           import_history
           importexport_importdata
-          inventory_stock_sales_channel
           klarna_core_order
           klarna_payments_quote
           logicbroker_inventory_history
