@@ -23,84 +23,11 @@ commands:
           @development
           @ee_changelog
           @idx
-          amazon_customer
-          amazon_pending_authorization
-          amazon_pending_capture
-          amazon_pending_refund
-          amazon_quote
-          amazon_sales_order
           api*
           bronto_connector_event_queue
           bronto_connector_registration
           bronto_connector_tid
           bronto_email_trigger_queue
-          captcha_log
-          catalog_category_flat_store_1
-          catalog_product_flat_1
-          design_config_grid_flat
-          email_catalog
-          email_contact_consent
-          email_failed_auth
-          email_importer
-          email_order
-          email_review
-          email_rules
-          email_template
-          email_wishlist
-          fastly_modly_manifests
-          fastly_statistics
-          gift_message
-          import_history
-          importexport_importdata
-          logicbroker_inventory_history
-          magento_banner_salesrule
-          magento_customersegment_event
-          magento_customersegment_segment
-          magento_customersegment_website
-          magento_giftcard_amount
-          magento_giftcardaccount_history
-          magento_giftcardaccount_pool
-          magento_reminder_rule_log
-          magento_reward_salesrule
-          magento_rma_item_eav_attribute
-          magento_rma_item_eav_attribute_website
-          magento_rma_item_entity_datetime
-          magento_rma_item_entity_decimal
-          magento_rma_item_entity_int
-          magento_rma_item_entity_text
-          magento_rma_item_entity_varchar
-          magento_rma_item_form_attribute
-          magento_salesrule_filter
-          newsletter_problem
-          newsletter_queue
-          newsletter_queue_link
-          newsletter_queue_store_link
-          newsletter_template
-          password_reset_request_event
-          paypal_cert
-          reflektion_job
-          release_notification_viewer_log
-          report_event_types
-          sales_order_status
-          sales_order_status_label
-          sales_sequence_meta
-          sales_sequence_profile
-          salesrule
-          salesrule_coupon
-          salesrule_coupon_usage
-          salesrule_customer
-          salesrule_customer_group
-          salesrule_label
-          salesrule_product_attribute
-          salesrule_website
-          sd_adminnotify_history
-          sd_bonuscash_queue
-          sd_canceled_item_sent
-          sd_creditmemo_item_sent
-          sd_shipment_item_sent
-          sendfriend_log
-          sequence_salesrule
-          signifyd_case
           xtento_orderexport_destination
           xtento_orderexport_log
           xtento_orderexport_profile_history
@@ -109,12 +36,6 @@ commands:
           xtento_trackingimport_log
           xtento_trackingimport_source
           xtento_xtcore_config_data
-          vertex_sales_creditmemo_item_invoice_text_code
-          vertex_sales_creditmemo_item_tax_code
-          vertex_sales_creditmemo_item_vertex_tax_code
-          vertex_sales_order_item_invoice_text_code
-          vertex_sales_order_item_tax_code
-          vertex_sales_order_item_vertex_tax_code
       - id: "sd-dev"
         description: "Tables to strip for local development. Includes the sd-dev-base tables and project specific tables."
         tables: >-
