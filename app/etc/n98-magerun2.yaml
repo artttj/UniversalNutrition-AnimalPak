@@ -1,0 +1,36 @@
+# If pulling a database for a project use the sd-dev table group.
+#
+# Example Database dump:
+#   var/n98-magerun2.phar db:dump --compression="gzip" --exclude="core_config_data" --strip="@sd-dev"
+#
+# Table Groups:
+# - sd-dev-base:
+#       Contains project agnostic tables.
+#       Updates should primariy come from the project accelerator. For Example, if a core Magento table is missing from
+#       this list, update Accelerator first, then pull in those changes to the project.
+#
+# - sd-dev:
+#       Contains project specific tables.
+#       For example, if a new table is created for the client (e.g. table named client_name_event_ticket), append the table
+#       name to this list
+commands:
+  N98\Magento\Command\Database\DumpCommand:
+    table-groups:
+      - id: "sd-dev-base"
+        description: "Base tables removed across all projects."
+        tables: >-
+          *_state
+          @development
+          @ee_changelog
+          @idx
+          api*
+          bronto_*
+          ebizmarts_pos_*
+          firebear_*
+          mailchimp_*
+          shipperhq_order_*
+          xtento_*
+      - id: "sd-dev"
+        description: "Tables to strip for local development. Includes the sd-dev-base tables and project specific tables."
+        tables: >-
+          @sd-dev-base
