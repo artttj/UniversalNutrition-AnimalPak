@@ -24,19 +24,9 @@ commands:
           @ee_changelog
           @idx
           api*
-          bronto_connector_event_queue
-          bronto_connector_registration
-          bronto_connector_tid
-          bronto_email_trigger_queue
+          bronto_*
           firebear_*
-          xtento_orderexport_destination
-          xtento_orderexport_log
-          xtento_orderexport_profile_history
-          xtento_stockimport_log
-          xtento_stockimport_source
-          xtento_trackingimport_log
-          xtento_trackingimport_source
-          xtento_xtcore_config_data
+          xtento_*
       - id: "sd-dev"
         description: "Tables to strip for local development. Includes the sd-dev-base tables and project specific tables."
         tables: >-
