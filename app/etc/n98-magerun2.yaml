@@ -28,6 +28,7 @@ commands:
           bronto_connector_registration
           bronto_connector_tid
           bronto_email_trigger_queue
+          firebear_*
           xtento_orderexport_destination
           xtento_orderexport_log
           xtento_orderexport_profile_history
