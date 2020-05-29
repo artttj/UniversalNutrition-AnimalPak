@@ -25,7 +25,10 @@ commands:
           @idx
           api*
           bronto_*
+          ebizmarts_pos_*
           firebear_*
+          mailchimp_*
+          shipperhq_order_*
           xtento_*
       - id: "sd-dev"
         description: "Tables to strip for local development. Includes the sd-dev-base tables and project specific tables."
