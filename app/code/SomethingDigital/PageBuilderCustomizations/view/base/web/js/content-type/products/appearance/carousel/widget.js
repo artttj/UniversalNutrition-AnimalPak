@@ -42,17 +42,29 @@ define([
                 autoplaySpeed: $element.data('autoplay-speed') || 0,
                 arrows: $element.data('show-arrows'),
                 dots: $element.data('show-dots')
-            };
+            },
+            userConfig = {
+                "desktop" : {
+                    condition: '(min-width: 1024px)',
+                    slidesToShow: $element.data('slides-to-show-desktop')
+                },
+                "tablet" : {
+                    condition: '(min-width: 768px) and (max-width: 1024px)',
+                    slidesToShow: $element.data('slides-to-show-tablet')
+                },
+                "mobile" : {
+                    condition: '(min-width: 0px) and (max-width: 768px)',
+                    slidesToShow: $element.data('slides-to-show-mobile')
+                }
+            }
 
-        _.each(config.breakpoints, function (breakpoint) {
+        _.each(userConfig, function (breakpoint) {
             mediaCheck({
-                media: breakpointsUtils.buildMedia(breakpoint.conditions),
+                media: breakpoint.condition,
 
                 /** @inheritdoc */
                 entry: function () {
-                    var slidesToShow = breakpoint.options.products[carouselMode] ?
-                        breakpoint.options.products[carouselMode].slidesToShow :
-                        breakpoint.options.products.default.slidesToShow;
+                    var slidesToShow = breakpoint.slidesToShow;
 
                     slickConfig.slidesToShow = parseFloat(slidesToShow);
 
