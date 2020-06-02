@@ -4,8 +4,8 @@
         <arguments>
             <argument name="config" xsi:type="array">
                 <item name="products" xsi:type="array">
-                    <item name="grid" xsi:type="array">
-                        <item name="component" xsi:type="string">SomethingDigital_PageBuilderCustomizations/js/content-type/products/appearance/grid/widget</item>
+                    <item name="carousel" xsi:type="array">
+                        <item name="component" xsi:type="string">SomethingDigital_PageBuilderCustomizations/js/content-type/products/appearance/carousel/widget</item>
                     </item>
                 </item>
                 <item name="banner" xsi:type="array">
