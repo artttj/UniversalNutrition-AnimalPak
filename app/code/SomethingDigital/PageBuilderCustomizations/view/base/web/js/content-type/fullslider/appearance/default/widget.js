@@ -23,7 +23,22 @@ define([
             fade: $element.data('fade'),
             infinite: $element.data('is-infinite'),
             arrows: $element.data('show-arrows'),
-            dots: $element.data('show-dots')
+            dots: $element.data('show-dots'),
+            slidesToShow: $element.data('slidesToShowDesktop'),
+            responsive: [
+                {
+                    breakpoint: breakpoints.screen__m,
+                    settings: {
+                        slidesToShow: $element.data('slidesToShowTablet'),
+                    }
+                },
+                {
+                    breakpoint: breakpoints.screen__xs,
+                    settings: {
+                        slidesToShow: $element.data('slidesToShowMobile'),
+                    }
+                }
+            ]
         };
         $element.slick(settings);
 
