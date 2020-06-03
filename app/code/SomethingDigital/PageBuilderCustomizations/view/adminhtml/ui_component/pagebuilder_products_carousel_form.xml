@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-    <fieldset name="slider_settings" sortOrder="40">
-        <settings>
-            <label>Slider Settings</label>
-            <collapsible>true</collapsible>
-            <opened>false</opened>
-        </settings>
+    <fieldset name="settings">
         <field name="slides_to_show_desktop" sortOrder="10" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
