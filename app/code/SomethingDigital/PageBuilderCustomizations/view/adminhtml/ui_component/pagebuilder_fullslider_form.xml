@@ -70,6 +70,54 @@
             <collapsible>true</collapsible>
             <opened>true</opened>
         </settings>
+        <field name="slides_to_show_desktop" sortOrder="10" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">3</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Slides To Show</label>
+                <additionalClasses>
+                    <class name="admin__field-small">true</class>
+                </additionalClasses>
+                <dataScope>slides_to_show_desktop</dataScope>
+                <notice translate="true">How many slides shown</notice>
+            </settings>
+        </field>
+        <field name="slides_to_show_tablet" sortOrder="11" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">2</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Slides To Show Tablet</label>
+                <additionalClasses>
+                    <class name="admin__field-small">true</class>
+                </additionalClasses>
+                <dataScope>slides_to_show_tablet</dataScope>
+                <notice translate="true">How many slides shown on tablet</notice>
+            </settings>
+        </field>
+        <field name="slides_to_show_mobile" sortOrder="12" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Slides To Show Mobile</label>
+                <additionalClasses>
+                    <class name="admin__field-small">true</class>
+                </additionalClasses>
+                <dataScope>slides_to_show_mobile</dataScope>
+                <notice translate="true">How many slides shown on mobile</notice>
+            </settings>
+        </field>
         <field name="autoplay" sortOrder="1" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
