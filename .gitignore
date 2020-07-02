@@ -1,8 +1,10 @@
 ### SD Ignored Files
+
+# Storing the auth.json in Azure now
 auth.json
+# Local database dumps
 *.sql
 *.sql.gz
-
 ## Unused M2 files
 /CHANGELOG.md
 /CONTRIBUTING.md
@@ -14,17 +16,10 @@ auth.json
 /.github/ISSUE_TEMPLATE.md
 /.github/ISSUE_TEMPLATE/*.md
 /.github/PULL_REQUEST_TEMPLATE.md
-# BlueFoot
-/pub/media/gene-cms/*
-!/pub/media/gene-cms/.htaccess
 # Hologram
 /pub/styleguide
-# Docker's files/ directory
-/files
-/.docker-sync
-/provision.retry
 # Vim
-**.swp
+*.swp
 
 ### Magento OOB .gitignore
 ### Do not edit anything below this line
