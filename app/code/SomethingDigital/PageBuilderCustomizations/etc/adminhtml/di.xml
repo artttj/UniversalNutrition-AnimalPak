@@ -82,4 +82,16 @@
             </argument>
         </arguments>
     </virtualType>
+    <virtualType name="AppearanceSourceRow" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="3" xsi:type="array">
+                    <item name="value" xsi:type="string">contained-wide</item>
+                    <item name="title" xsi:type="string" translate="true">Contained Wide</item>
+                    <item name="icon" xsi:type="string">Magento_PageBuilder::css/images/content-type/row/appearance/contained.svg</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
 </config>
