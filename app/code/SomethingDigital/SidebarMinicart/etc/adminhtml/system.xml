@@ -12,6 +12,21 @@
                         <field id="display">1</field>
                     </depends>
                 </field>
+                <field id="auto_minicart_sidebar" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Auto Display Minicart On Add To Cart</label>
+                    <comment>Display minicart when a product is added to the cart</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="display">1</field>
+                    </depends>
+                </field>
+                <field id="seconds_minicart_sidebar" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number Of Seconds To Temporarily Display Minicart</label>
+                    <comment>Length of time to display minicart on mobile when a product is added to the cart</comment>
+                    <depends>
+                        <field id="auto_minicart_sidebar">1</field>
+                    </depends>
+                </field>
             </group>
         </section>
     </system>

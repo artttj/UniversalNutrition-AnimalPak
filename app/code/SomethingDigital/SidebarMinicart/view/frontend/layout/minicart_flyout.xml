@@ -5,6 +5,9 @@
             <action method="setTemplate">
                 <argument name="template" xsi:type="string">SomethingDigital_SidebarMinicart::cart/minicart.phtml</argument>
             </action>
+            <arguments>
+                <argument name="sidebar_minicart_view_model" xsi:type="object">SomethingDigital\SidebarMinicart\ViewModel\SystemConfig</argument>
+            </arguments>
         </referenceBlock>
     </body>
 </page>

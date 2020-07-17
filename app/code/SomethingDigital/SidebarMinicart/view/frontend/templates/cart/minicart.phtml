@@ -5,6 +5,11 @@
  */
 
 /** @var $block \Magento\Checkout\Block\Cart\Sidebar */
+
+/** @var \SomethingDigital\SidebarMinicart\ViewModel\SystemConfig $viewModel */
+$viewModel = $block->getSidebarMinicartViewModel();
+$secondsToDisplay = $viewModel->secondsToDisplay();
+$autoDisplay = $viewModel->autoDisplayEnabled();
 ?>
 
 <div data-block="minicart" class="minicart-wrapper">
@@ -31,6 +36,16 @@
             <?= $block->getChildHtml('minicart.addons') ?>
         </div>
         <script>
+            /**
+             * Checks if a variable is an HTML Element
+             *
+             * @param element
+             * @returns {boolean}
+             */
+            function isElement(element) {
+                return element instanceof Element || element instanceof HTMLDocument;
+            }
+
             require(
                 [
                     'jquery',
@@ -51,6 +66,45 @@
                     $('.minicart-wrapper .showcart').on('click', function(e) {
                         e.preventDefault(); // prevent default behavior from redirecting customer
                     });
+                    try {
+                        $(document).on('ajax:addToCart', function (event, data) {
+                            var displayOnAddToCart = (<?= json_encode((string)$autoDisplay) ?> === '1');
+                            if (displayOnAddToCart === false) {
+                                return;
+                            }
+                            var secondsToDisplay = parseInt(<?= json_encode((int)$secondsToDisplay) ?>, 10);
+                            var showCartElements = document.getElementsByClassName('showcart');
+
+                            if (typeof showCartElements !== 'object' && showCartElements.length === 0) {
+                                return;
+                            }
+
+                            var firstShowCartElement = showCartElements[0];
+                            var minicartModalElements = document.getElementsByClassName('minicart-modal');
+
+                            if (typeof minicartModalElements !== 'object' && minicartModalElements.length === 0) {
+                                return;
+                            }
+
+                            var minicart = minicartModalElements[0];
+
+                            // Checking to see if the cart is already open.
+                            if ($.inArray('_show', minicart.classList) >= 0) {
+                                return;
+                            }
+
+                            if (isElement(firstShowCartElement)) {
+                                firstShowCartElement.click();
+                                setTimeout(function() {
+                                    document.body.querySelector('.minicart-modal button[data-role="closeBtn"]').click();
+                                }, (secondsToDisplay * 1000));
+                            }
+                        });
+                    } catch (e) {
+                        //
+                        console.log('error', e);
+                    }
+
                 }
             );
         </script>
