@@ -6,7 +6,7 @@
                 <argument name="template" xsi:type="string">SomethingDigital_SidebarMinicart::cart/minicart.phtml</argument>
             </action>
             <arguments>
-                <argument name="view_model" xsi:type="object">SomethingDigital\SidebarMinicart\ViewModel\SystemConfig</argument>
+                <argument name="sidebar_minicart_view_model" xsi:type="object">SomethingDigital\SidebarMinicart\ViewModel\SystemConfig</argument>
             </arguments>
         </referenceBlock>
     </body>
