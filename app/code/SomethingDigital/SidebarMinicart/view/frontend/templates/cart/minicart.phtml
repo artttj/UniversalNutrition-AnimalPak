@@ -5,6 +5,11 @@
  */
 
 /** @var $block \Magento\Checkout\Block\Cart\Sidebar */
+
+/** @var \SomethingDigital\SidebarMinicart\ViewModel\SystemConfig $viewModel */
+$viewModel = $block->getViewModel();
+$secondsToDisplay = $viewModel->secondsToDisplay();
+$autoDisplay = $viewModel->autoDisplayEnabled();
 ?>
 
 <div data-block="minicart" class="minicart-wrapper">
@@ -53,6 +58,50 @@
                     });
                 }
             );
+        </script>
+        <script>
+            /**
+             * Checks if a variable is an HTML Element
+             *
+             * @param element
+             * @returns {boolean}
+             */
+            function isElement(element) {
+                return element instanceof Element || element instanceof HTMLDocument;
+            }
+
+            require(['Magento_Customer/js/customer-data'], function (customerData) {
+                var cart = customerData.get('cart');
+                var count = cart().summary_count;
+                var displayOnAddToCart = ("<?= $autoDisplay ?>" === '1');
+
+                if (displayOnAddToCart === false) {
+                    return;
+                }
+
+                var secondsToDisplay = parseInt("<?= $secondsToDisplay ?>");
+                cart.subscribe(function () {
+                    try {
+                        // if the count variable is not defined then we will not display the minicart.
+                        if (count == null) {
+                            count = cart().summary_count;
+                            return;
+                        }
+                        if (cart().summary_count !== count) {
+                            count = cart().summary_count;
+                            var firstShowCartElement = document.getElementsByClassName('showcart')[0];
+                            if (isElement(firstShowCartElement)) {
+                                firstShowCartElement.click();
+                                setTimeout(function() {
+                                    document.body.querySelector('.minicart-modal button').click();
+                                    }, (secondsToDisplay * 1000));
+                            }
+                        }
+                    } catch (e) {
+                       // intentionally ignoring this exception.
+                    }
+                });
+            });
         </script>
     <?php endif ?>
     <script>
