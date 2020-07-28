@@ -421,6 +421,11 @@ return [
     ],
     'system' => [
         'default' => [
+            'design' => [
+                'theme' => [
+                    'theme_id' => 'frontend/AnimalPak/default'
+                ]
+            ],
             'general' => [
                 'locale' => [
                     'code' => 'en_US'
