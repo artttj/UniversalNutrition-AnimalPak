@@ -470,5 +470,52 @@ return [
                 'en_US'
             ]
         ]
+    ],
+    'themes' => [
+        'frontend/Magento/blank' => [
+            'parent_id' => null,
+            'theme_path' => 'Magento/blank',
+            'theme_title' => 'Magento Blank',
+            'is_featured' => '0',
+            'area' => 'frontend',
+            'type' => '0',
+            'code' => 'Magento/blank'
+        ],
+        'frontend/Magento/luma' => [
+            'parent_id' => 'Magento/blank',
+            'theme_path' => 'Magento/luma',
+            'theme_title' => 'Magento Luma',
+            'is_featured' => '0',
+            'area' => 'frontend',
+            'type' => '0',
+            'code' => 'Magento/luma'
+        ],
+        'adminhtml/Magento/backend' => [
+            'parent_id' => null,
+            'theme_path' => 'Magento/backend',
+            'theme_title' => 'Magento 2 backend',
+            'is_featured' => '0',
+            'area' => 'adminhtml',
+            'type' => '0',
+            'code' => 'Magento/backend'
+        ],
+        'frontend/SomethingDigital/bryantpark' => [
+            'parent_id' => null,
+            'theme_path' => 'SomethingDigital/bryantpark',
+            'theme_title' => 'Something Digital Bryant Park',
+            'is_featured' => '0',
+            'area' => 'frontend',
+            'type' => '0',
+            'code' => 'SomethingDigital/bryantpark'
+        ],
+        'frontend/AnimalPak/default' => [
+            'parent_id' => 'SomethingDigital/bryantpark',
+            'theme_path' => 'AnimalPak/default',
+            'theme_title' => 'AnimalPak default Theme',
+            'is_featured' => '0',
+            'area' => 'frontend',
+            'type' => '0',
+            'code' => 'AnimalPak/default'
+        ]
     ]
 ];
