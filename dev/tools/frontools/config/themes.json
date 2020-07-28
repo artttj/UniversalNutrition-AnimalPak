@@ -13,9 +13,10 @@
     ],
     "ignore": [
       "node_modules/**"
-    ]
+    ],
+    "skipBuild": true
   },
-  "default": {
+  "animalpak": {
     "src": "app/design/frontend/AnimalPak/default",
     "dest": "pub/static/frontend/AnimalPak/default",
     "parent": "sd",

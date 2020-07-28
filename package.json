@@ -13,7 +13,7 @@
     "build:prep": "npm-run-all -p build-prep:animalpak",
     "build-prep:animalpak": "gulp styles:prep --gulpfile app/design/frontend/AnimalPak/default/gulpfile.js",
     "build:inheritance": "gulp snowdog:inheritance --gulpfile vendor/somethingdigital/magento2-theme-bryantpark/gulpfile.js",
-    "build:animalpak": "gulp build --gulpfile app/design/frontend/AnimalPak/default/gulpfile.js --theme=default",
+    "build:animalpak": "gulp build --gulpfile app/design/frontend/AnimalPak/default/gulpfile.js --theme=animalpak",
     "start": "gulp watch"
   },
   "workspaces": [
