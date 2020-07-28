@@ -1,4 +1,4 @@
-ARG MAGE_BASE_IMAGE="sdmagentodev.azurecr.io/base-images/magento-php-fpm:7.2-develop"
+ARG MAGE_BASE_IMAGE="sdmagentodev.azurecr.io/base-images/magento-php-fpm:7.3-develop"
 
 FROM ${MAGE_BASE_IMAGE} as build
 ARG SSH_PRIVATE_KEY
@@ -17,7 +17,7 @@ RUN composer install --no-interaction && rm -rf /var/www/.composer
 
 
 FROM ${MAGE_BASE_IMAGE}
-ARG CLIENT_THEME="SomethingDigital/bryantpark"
+ARG CLIENT_THEME="SomethingDigital/bryantpark AnimalPak/default"
 ARG MAGENTO_THEME="Magento/backend"
 
 COPY --chown=app:app . /var/www/html
@@ -44,6 +44,12 @@ RUN php /var/www/html/bin/magento setup:di:compile && \
 
 RUN php /var/www/html/bin/magento sd:dev:static ${CLIENT_THEME} && \
     php /var/www/html/bin/magento sd:dev:static --area=adminhtml ${MAGENTO_THEME}
+
+USER root
+RUN cd /var/www/html/app/design/frontend/AnimalPak/default && \
+    /bin/bash -c "source /etc/profile; bundle install"
+
+USER app
 
 RUN /bin/bash -c "source /etc/profile; yarn build"
 
