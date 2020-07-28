@@ -55,7 +55,8 @@
         "somethingdigital/magento2-migration": "dev-nobluefoot",
         "somethingdigital/magento2-theme-bryantpark": "4.2.13",
         "somethingdigital/module-admin-notify": "^1.0",
-        "somethingdigital/module-cms-meta-image": "^1.0"
+        "somethingdigital/module-cms-meta-image": "^1.0",
+        "yotpo/module-review": "^3.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.5.0",
