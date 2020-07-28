@@ -8,12 +8,12 @@
     "node": ">=8.9.0 <11.0.0"
   },
   "scripts": {
-    "build": "npm-run-all build:prep build:inheritance -p \"build:bryantpark --pipeline\"",
-    "build:production": "npm-run-all build:prep build:inheritance -p \"build:bryantpark --prod --ci --pipeline\"",
-    "build:prep": "npm-run-all -p build-prep:bryantpark",
-    "build-prep:bryantpark": "gulp styles:prep --gulpfile vendor/somethingdigital/magento2-theme-bryantpark/gulpfile.js",
+    "build": "npm-run-all build:prep build:inheritance -p \"build:animalpak --pipeline\"",
+    "build:production": "npm-run-all build:prep build:inheritance -p \"build:animalpak --prod --ci --pipeline\"",
+    "build:prep": "npm-run-all -p build-prep:animalpak",
+    "build-prep:animalpak": "gulp styles:prep --gulpfile app/design/frontend/AnimalPak/default/gulpfile.js",
     "build:inheritance": "gulp snowdog:inheritance --gulpfile vendor/somethingdigital/magento2-theme-bryantpark/gulpfile.js",
-    "build:bryantpark": "gulp build --gulpfile vendor/somethingdigital/magento2-theme-bryantpark/gulpfile.js --theme=sd",
+    "build:animalpak": "gulp build --gulpfile app/design/frontend/AnimalPak/default/gulpfile.js --theme=default",
     "start": "gulp watch"
   },
   "workspaces": [
