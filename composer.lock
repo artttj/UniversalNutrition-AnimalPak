@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0806a07628a4313297d55f42b5d1402f",
+    "content-hash": "d4f7f2c708d0f8be08639b9e0fb6c0c6",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -2386,6 +2386,25 @@
                 }
             ],
             "description": "Klarna Order Management Magento 2 Extension"
+        },
+        {
+            "name": "klaviyo/magento2-extension",
+            "version": "1.2.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/klaviyo/magento2-extension/klaviyo-magento2-extension-1.2.0.0.zip",
+                "shasum": "bbd1a385ba81c3647f742b72ed9cf94cbbf569c4"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Klaviyo\\Reclaim\\": ""
+                }
+            },
+            "description": "Klaviyo extension for Magento 2. Allows pushing newsletters to Klaviyo's platform and more."
         },
         {
             "name": "laminas/laminas-captcha",
