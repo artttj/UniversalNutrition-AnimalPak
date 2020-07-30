@@ -338,7 +338,7 @@ return [
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
         'Klarna_Kp' => 1,
-        'Klaviyo_Reclaim' => 0,
+        'Klaviyo_Reclaim' => 1,
         'MSP_SecuritySuiteCommon' => 1,
         'Magento_PaypalReCaptcha' => 1,
         'MSP_AdminRestriction' => 1,
