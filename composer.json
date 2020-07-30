@@ -42,6 +42,7 @@
     ],
     "require": {
         "php": "~7.1.3||~7.2.0||~7.3.0",
+        "aheadworks/module-blog": "^2.7",
         "composer/composer": "@alpha",
         "ethanyehuda/magento2-cronjobmanager": "^1.6",
         "jamescowie/composer-patcher": "1.0.3",
