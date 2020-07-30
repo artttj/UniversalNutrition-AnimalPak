@@ -363,6 +363,7 @@ return [
         'Temando_ShippingRemover' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidation' => 1,
+        'Yotpo_Loyalty' => 1,
         'Yotpo_Yotpo' => 1
     ],
     'scopes' => [
