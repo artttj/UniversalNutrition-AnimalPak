@@ -343,6 +343,8 @@ return [
         'Magento_PaypalReCaptcha' => 1,
         'MSP_AdminRestriction' => 1,
         'MSP_TwoFactorAuth' => 1,
+        'Mirasvit_CatalogLabel' => 1,
+        'Mirasvit_Core' => 1,
         'SomethingDigital_AdminNotify' => 1,
         'SomethingDigital_AssetOptimizer' => 1,
         'SomethingDigital_BryantPark' => 1,
