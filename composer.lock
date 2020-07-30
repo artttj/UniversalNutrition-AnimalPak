@@ -21996,6 +21996,34 @@
             "time": "2019-11-06T18:30:11+00:00"
         },
         {
+            "name": "yotpo/magento2-module-yotpo-loyalty",
+            "version": "1.1.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/yotpo/magento2-module-yotpo-loyalty/yotpo-magento2-module-yotpo-loyalty-1.1.5.0.zip",
+                "shasum": "2ce8fe685dc52edc34b8ae16fc23215d388f1176"
+            },
+            "require": {
+                "magento/framework": ">=100.1.0",
+                "php": ">=5.6"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "cli_commands.php",
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Yotpo\\Loyalty\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento 2 module for integration with Yotpo"
+        },
+        {
             "name": "yotpo/magento2-module-yotpo-reviews",
             "version": "3.1.0",
             "dist": {
