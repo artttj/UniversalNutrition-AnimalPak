@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a067bb66ed2fb4968958f726a7ed4fe",
+    "content-hash": "bb2b8665b9b889d2c18b443caaffbac9",
     "packages": [
         {
             "name": "aheadworks/module-blog",
