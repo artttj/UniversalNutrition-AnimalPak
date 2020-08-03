@@ -50,14 +50,17 @@
         "magento/magento-cloud-metapackage": ">=2.3.5 <2.3.6",
         "msp/adminrestriction": "^1.3",
         "pelago/emogrifier": "~2.0.0||>=2.1.2",
+        "rocketweb/module-shopping-feeds": "^2.2",
+        "rocketweb/module-shopping-feeds-google": "^2.2",
+        "rocketweb/module-shopping-feeds-google-promotions": "^2.2",
         "snowdog/frontools": "dev-master",
         "somethingdigital/invalidate-admin-passwords": "^0.1.0",
         "somethingdigital/magento2-migration": "dev-nobluefoot",
         "somethingdigital/magento2-theme-bryantpark": "4.2.13",
         "somethingdigital/module-admin-notify": "^1.0",
         "somethingdigital/module-cms-meta-image": "^1.0",
-        "yotpo/module-review": "^3.1",
-        "yotpo/magento2-module-yotpo-loyalty": "^1.1"
+        "yotpo/magento2-module-yotpo-loyalty": "^1.1",
+        "yotpo/module-review": "^3.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.5.0",

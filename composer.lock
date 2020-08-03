@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b22d1e162d8fe33aaf4236287eed1468",
+    "content-hash": "140c64d8be9fefe4772d1f8c578ab2ff",
     "packages": [
         {
             "name": "aheadworks/module-blog",
@@ -19319,6 +19319,96 @@
                 "promises"
             ],
             "time": "2020-05-12T15:16:56+00:00"
+        },
+        {
+            "name": "rocketweb/module-shopping-feeds",
+            "version": "2.2.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/rocketweb/module-shopping-feeds/rocketweb-module-shopping-feeds-2.2.5.0.zip",
+                "shasum": "0c662f44c10df2f52a1645430f9b721c11b85145"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "RocketWeb\\ShoppingFeeds\\": ""
+                }
+            },
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Rocket Web Inc.",
+                    "email": "info@rocketweb.com"
+                }
+            ],
+            "description": "Rocket Web Shopping Feeds for Magento 2"
+        },
+        {
+            "name": "rocketweb/module-shopping-feeds-google",
+            "version": "2.2.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/rocketweb/module-shopping-feeds-google/rocketweb-module-shopping-feeds-google-2.2.5.0.zip",
+                "shasum": "9a06c850ccd7da4539460105f7ef96759fed5688"
+            },
+            "require": {
+                "rocketweb/module-shopping-feeds": "2.2.5"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "RocketWeb\\ShoppingFeedsGoogle\\": ""
+                }
+            },
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Rocket Web Inc.",
+                    "email": "info@rocketweb.com"
+                }
+            ],
+            "description": "Rocket Web Google Shopping for Magento 2"
+        },
+        {
+            "name": "rocketweb/module-shopping-feeds-google-promotions",
+            "version": "2.2.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/rocketweb/module-shopping-feeds-google-promotions/rocketweb-module-shopping-feeds-google-promotions-2.2.5.0.zip",
+                "shasum": "ae1dbacdb85569b8b4902c216770820176a9b129"
+            },
+            "require": {
+                "rocketweb/module-shopping-feeds-google": "2.2.5"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "RocketWeb\\ShoppingFeedsGooglePromotions\\": ""
+                }
+            },
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Rocket Web Inc.",
+                    "email": "info@rocketweb.com"
+                }
+            ],
+            "description": "Rocket Web Google Merchant Promotions for Magento 2"
         },
         {
             "name": "seld/jsonlint",
