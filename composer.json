@@ -6,40 +6,44 @@
     "license": [
         "proprietary"
     ],
-    "repositories": [
-        {
+    "repositories": {
+        "0": {
             "type": "composer",
             "url": "https://repo.magento.com/"
         },
-        {
+        "1": {
             "type": "git",
             "url": "https://github.com/sdinteractive/magento2-frontools.git"
         },
-        {
+        "2": {
             "type": "git",
             "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git"
         },
-        {
+        "3": {
             "type": "git",
             "url": "https://github.com/sdinteractive/composer-patcher.git"
         },
-        {
+        "4": {
             "type": "git",
             "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_Migration.git"
         },
-        {
+        "5": {
             "type": "git",
             "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_AdminNotify.git"
         },
-        {
+        "6": {
             "type": "git",
             "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_CmsMetaImage.git"
         },
-        {
+        "7": {
             "type": "git",
             "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_InvalidateAdminPasswords.git"
+        },
+        "xtento": {
+            "type": "composer",
+            "url": "https://repo.xtento.com"
         }
-    ],
+    },
     "require": {
         "php": "~7.1.3||~7.2.0||~7.3.0",
         "aheadworks/module-blog": "^2.7",
@@ -60,6 +64,9 @@
         "somethingdigital/module-admin-notify": "^1.0",
         "somethingdigital/module-cms-meta-image": "^1.0",
         "yotpo/magento2-module-yotpo-loyalty": "^1.1",
+        "xtento/module-stockimport": "^2.9",
+        "xtento/orderexport": "^2.13",
+        "xtento/trackingimport": "^2.9",
         "yotpo/module-review": "^3.1"
     },
     "require-dev": {
@@ -116,6 +123,6 @@
     },
     "extra": {
         "magento-force": "override",
-        "patches": {}
+        "patches": []
     }
 }
