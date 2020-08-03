@@ -346,6 +346,9 @@ return [
         'MSP_TwoFactorAuth' => 1,
         'Mirasvit_CatalogLabel' => 1,
         'Mirasvit_Core' => 1,
+        'RocketWeb_ShoppingFeeds' => 1,
+        'RocketWeb_ShoppingFeedsGoogle' => 1,
+        'RocketWeb_ShoppingFeedsGooglePromotions' => 1,
         'SomethingDigital_AdminNotify' => 1,
         'SomethingDigital_AssetOptimizer' => 1,
         'SomethingDigital_BryantPark' => 1,
@@ -363,6 +366,7 @@ return [
         'Temando_ShippingRemover' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidation' => 1,
+        'Yotpo_Loyalty' => 1,
         'Yotpo_Yotpo' => 1
     ],
     'scopes' => [
