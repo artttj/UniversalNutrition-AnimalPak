@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81b89ada21f2f989314233a473dc21a3",
+    "content-hash": "6caea0d8fb70f7167d11ae8f7496ee03",
     "packages": [
         {
             "name": "aheadworks/module-blog",
@@ -22508,18 +22508,6 @@
             "time": "2019-11-06T18:30:11+00:00"
         },
         {
-<<<<<<< HEAD
-            "name": "yotpo/magento2-module-yotpo-loyalty",
-            "version": "1.1.5",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/yotpo/magento2-module-yotpo-loyalty/yotpo-magento2-module-yotpo-loyalty-1.1.5.0.zip",
-                "shasum": "2ce8fe685dc52edc34b8ae16fc23215d388f1176"
-            },
-            "require": {
-                "magento/framework": ">=100.1.0",
-                "php": ">=5.6"
-=======
             "name": "xtento/module-stockimport",
             "version": "2.9.7",
             "dist": {
@@ -22534,25 +22522,10 @@
                 "php": "~5.5.22|~5.6.0|7.0.2|7.0.4|~7.0.6|~7.1.0|~7.2.0|~7.3.0",
                 "phpoffice/phpspreadsheet": "^1.0",
                 "xtento/xtcore": "~2.0"
->>>>>>> Install Xtento modules with composer
             },
             "type": "magento2-module",
             "autoload": {
                 "files": [
-<<<<<<< HEAD
-                    "cli_commands.php",
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Yotpo\\Loyalty\\": ""
-                }
-            },
-            "license": [
-                "OSL-3.0",
-                "AFL-3.0"
-            ],
-            "description": "Magento 2 module for integration with Yotpo"
-=======
                     "registration.php"
                 ],
                 "psr-4": {
@@ -22702,7 +22675,34 @@
                 "email": "info@xtento.com"
             },
             "time": "2020-03-23T12:50:30+00:00"
->>>>>>> Install Xtento modules with composer
+        },
+        {
+            "name": "yotpo/magento2-module-yotpo-loyalty",
+            "version": "1.1.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/yotpo/magento2-module-yotpo-loyalty/yotpo-magento2-module-yotpo-loyalty-1.1.5.0.zip",
+                "shasum": "2ce8fe685dc52edc34b8ae16fc23215d388f1176"
+            },
+            "require": {
+                "magento/framework": ">=100.1.0",
+                "php": ">=5.6"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "cli_commands.php",
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Yotpo\\Loyalty\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "Magento 2 module for integration with Yotpo"
         },
         {
             "name": "yotpo/magento2-module-yotpo-reviews",
