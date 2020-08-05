@@ -364,13 +364,17 @@ return [
         'SomethingDigital_SidebarMinicart' => 1,
         'SomethingDigital_VirtualThemes' => 1,
         'Temando_ShippingRemover' => 1,
+        'Unirgy_RapidFlow' => 1,
+        'Unirgy_RapidFlowPro' => 1,
+        'Unirgy_SimpleUp' => 1,
+        'Unirgy_SimpleLicense' => 1,
         'Vertex_Tax' => 1,
         'Vertex_AddressValidation' => 1,
-        'Yotpo_Loyalty' => 1,
         'Xtento_XtCore' => 1,
         'Xtento_StockImport' => 1,
         'Xtento_TrackingImport' => 1,
         'Xtento_OrderExport' => 1,
+        'Yotpo_Loyalty' => 1,
         'Yotpo_Yotpo' => 1
     ],
     'scopes' => [
