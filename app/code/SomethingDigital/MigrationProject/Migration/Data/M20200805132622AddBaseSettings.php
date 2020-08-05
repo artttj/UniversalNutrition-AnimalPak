@@ -30,7 +30,7 @@ class M20200805132622AddBaseSettings implements MigrationInterface
             'general/locale/timezone' => 'America/New_York',
             'general/region/display_all' => '1',
 
-            'design/email/logo_alt' => 'Animal Pak logo',
+            'design/email/logo_alt' => 'Animal Pak',
             'design/footer/copyright' => '&copy; {{ YEAR }} Animal Pak. All rights reserved.',
 
             'design/socialprofiles/social_facebook' => 'https://www.facebook.com/officialanimalpak',
@@ -67,6 +67,11 @@ class M20200805132622AddBaseSettings implements MigrationInterface
 
             'magento_reward/general/is_enabled' => '0',
             'magento_reward/general/is_enabled_on_front' => '0',
+
+            'magento_invitation/general/enabled' => '0',
+            'magento_invitation/general/enabled_on_front' => '0',
+
+            'magento_giftregistry/general/enabled' => '0',
 
             'wishlist/general/active' => '1',
         ];
