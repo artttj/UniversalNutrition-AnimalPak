@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8ad82429236201afbb61201d64cca99",
+    "content-hash": "4001c36b0a9a5628b7d2d42e4dedf33d",
     "packages": [
         {
             "name": "aheadworks/module-blog",
@@ -1501,16 +1501,16 @@
         },
         {
             "name": "fastly/magento2",
-            "version": "1.2.142",
+            "version": "1.2.144",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fastly/fastly-magento2.git",
-                "reference": "abe13a4d0f029e5eb76e8f81de3557b557d9dbe4"
+                "reference": "36065594588d95560d4282a127cd3da10e53e2d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/abe13a4d0f029e5eb76e8f81de3557b557d9dbe4",
-                "reference": "abe13a4d0f029e5eb76e8f81de3557b557d9dbe4",
+                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/36065594588d95560d4282a127cd3da10e53e2d8",
+                "reference": "36065594588d95560d4282a127cd3da10e53e2d8",
                 "shasum": ""
             },
             "require": {
@@ -1536,7 +1536,7 @@
                 "BSD-3-Clause"
             ],
             "description": "Fastly CDN Module for Magento 2.x",
-            "time": "2020-07-22T15:00:46+00:00"
+            "time": "2020-07-31T14:01:38+00:00"
         },
         {
             "name": "google/recaptcha",
