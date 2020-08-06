@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-newsletter-subscriptions-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-product-reviews-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-checkout-sku-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-gift-card-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-account-edit-link">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Account Info</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="customer-account-navigation-wish-list-link">
+            <arguments>
+                <argument name="label" xsi:type="string">Favorites</argument>
+            </arguments>
+        </referenceBlock>
+        <move element="customer-account-navigation-account-edit-link" destination="customer_account_navigation" before="customer-account-navigation-address-link"/>
+        <move element="customer-account-navigation-wish-list-link" destination="customer_account_navigation" before="customer-account-navigation-customer-balance-link"/>
+    </body>
+</page>
