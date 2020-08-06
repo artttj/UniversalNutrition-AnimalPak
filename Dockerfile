@@ -46,6 +46,17 @@ RUN php /var/www/html/bin/magento sd:dev:static ${CLIENT_THEME} && \
     php /var/www/html/bin/magento sd:dev:static --area=adminhtml ${MAGENTO_THEME}
 
 USER root
+
+ENV PATH /usr/local/rvm/bin/:$PATH
+
+SHELL ["/bin/bash", "-c", "-l"]
+
+# RVM upgraded in base image but requires downgrade, without removing 2.7 use does not work as expected
+RUN rvm remove 2.7.0
+RUN rvm install ruby-2.6.3
+RUN ruby -v
+
+USER root
 RUN cd /var/www/html/app/design/frontend/AnimalPak/default && \
     /bin/bash -c "source /etc/profile; bundle install"
 
