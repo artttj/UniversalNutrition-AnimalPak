@@ -38,6 +38,16 @@ RUN yarn && \
     yarn && \
     cd /var/www/html
 
+USER root
+
+RUN curl -o - https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz | tar xvz ioncube/ioncube_loader_lin_7.3.so && \
+    mkdir -p `php -r 'echo ini_get("extension_dir");'` && \
+    cp -v ioncube/ioncube_loader_lin_7.3.so `php -r 'echo ini_get("extension_dir");'`/ioncube-loader.so && \
+    cp -v `php -r 'echo php_ini_loaded_file();'` `php -r 'echo php_ini_loaded_file();'`~ && \
+    (echo 'zend_extension=ioncube-loader.so' && cat `php -r 'echo php_ini_loaded_file();'`~) > `php -r 'echo php_ini_loaded_file();'`
+
+USER app
+
 RUN php /var/www/html/bin/magento setup:di:compile && \
     php bin/magento setup:static-content:deploy -f --exclude-theme \
     Magento/luma
@@ -46,12 +56,6 @@ RUN php /var/www/html/bin/magento sd:dev:static ${CLIENT_THEME} && \
     php /var/www/html/bin/magento sd:dev:static --area=adminhtml ${MAGENTO_THEME}
 
 USER root
-
-RUN curl -o - https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz | tar xvz ioncube/ioncube_loader_lin_7.3.so && \
-    mkdir -p `php -r 'echo ini_get("extension_dir");'` && \
-    cp -v ioncube/ioncube_loader_lin_7.3.so `php -r 'echo ini_get("extension_dir");'`/ioncube-loader.so && \
-    cp -v `php -r 'echo php_ini_loaded_file();'` `php -r 'echo php_ini_loaded_file();'`~ && \
-    (echo 'zend_extension=ioncube-loader.so' && cat `php -r 'echo php_ini_loaded_file();'`~) > `php -r 'echo php_ini_loaded_file();'`
 
 ENV PATH /usr/local/rvm/bin/:$PATH
 
@@ -62,7 +66,7 @@ RUN rvm remove 2.7.0
 RUN rvm install ruby-2.6.3
 RUN ruby -v
 
-USER root
+
 RUN cd /var/www/html/app/design/frontend/AnimalPak/default && \
     /bin/bash -c "source /etc/profile; bundle install"
 
