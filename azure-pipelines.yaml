@@ -38,15 +38,6 @@ stages:
       inputs:
         secureFile: "$(GITHUB_SSH_KEY)"
 
-    - task: DownloadSecureFile@1
-      displayName: "Download magento authentication file"
-      name: "auth_json"
-      inputs:
-        secureFile: "$(AUTH_JSON)"
-
-    - bash: mv $(Agent.TempDirectory)/$(AUTH_JSON) $(System.DefaultWorkingDirectory)/auth.json
-      displayName: "Move auth_file to working directory"
-
     - bash: set -a || export IMAGE_TAG=`basename $(Build.SourceBranch)`
       displayName: "Set image tags following git tags"
       condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags'))
