@@ -49,6 +49,7 @@
         "aheadworks/module-blog": "^2.7",
         "composer/composer": "@alpha",
         "ethanyehuda/magento2-cronjobmanager": "^1.6",
+        "fastly/magento2": "^1.2",
         "jamescowie/composer-patcher": "1.0.3",
         "klaviyo/magento2-extension": "^1.2",
         "magento/magento-cloud-metapackage": ">=2.3.5 <2.3.6",
@@ -69,10 +70,10 @@
         "somethingdigital/magento2-theme-bryantpark": "4.2.13",
         "somethingdigital/module-admin-notify": "^1.0",
         "somethingdigital/module-cms-meta-image": "^1.0",
-        "yotpo/magento2-module-yotpo-loyalty": "^1.1",
         "xtento/module-stockimport": "^2.9",
         "xtento/orderexport": "^2.13",
         "xtento/trackingimport": "^2.9",
+        "yotpo/magento2-module-yotpo-loyalty": "^1.1",
         "yotpo/module-review": "^3.1"
     },
     "require-dev": {
