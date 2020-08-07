@@ -16,7 +16,7 @@ trigger:
       - refs/tags/*
 
 pool:
-  vmImage: "ubuntu-18.04"
+  name: "SD Docker Build Agents"
 
 stages:
 - stage: ContinuousBuild
@@ -76,3 +76,11 @@ stages:
     - bash: ./cicd/promote.sh
       displayName: "Promote Docker images"
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+    - bash: |
+        ./compose/bin/stop
+        docker system prune -f
+        docker volume prune -f
+        docker rmi $(docker images | grep 'animalpak' | awk {'print $3'})
+      displayName: "Clean Up"
+      condition: or(failed(), succeeded())
